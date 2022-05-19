@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Main');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -31,7 +31,11 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Main::index');
+$routes->addRedirect('/profile', '/');
+$routes->get('/profile/(:any)', 'Profile::index/$1');
+$routes->addRedirect('/watch', '/');
+$routes->get('/watch/(:any)', 'Watch::index/$1');
 
 /*
  * --------------------------------------------------------------------
