@@ -6,6 +6,6 @@ class Main extends BaseController
 {
     public function index()
     {
-        return view('main.php');
+        return view('home.php');
     }
 }
