@@ -12,6 +12,6 @@ class Main extends BaseController
         $model = new TitleModel($db);
         $data = $model->getSome(12);
         
-        return view('home.php', ['data' => $data]);
+        return view('main.php', ['data' => $data]);
     }
 }

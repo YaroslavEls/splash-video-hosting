@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/titleLayout'); ?>
+<?= $this->extend('layouts/title.layout.php'); ?>
 
 
 <?= $this->section('content'); ?>
