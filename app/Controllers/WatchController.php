@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\TitleModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
-class Watch extends BaseController
+class WatchController extends BaseController
 {
     public function index($arg)
     {

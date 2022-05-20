@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\ProfileModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
-class Profile extends BaseController
+class ProfileController extends BaseController
 {
     public function index($arg)
     {

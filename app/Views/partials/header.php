@@ -25,7 +25,7 @@
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
             <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Features</a></li>
+            <li class="nav-item"><a href="/genre" class="nav-link link-dark px-2">Genres</a></li>
             <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>
             <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
             <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>

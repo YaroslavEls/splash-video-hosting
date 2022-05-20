@@ -22,9 +22,35 @@ class TitleModel
 
     function getByName($name)
     {
+        $genres = $this->builder
+                        ->select('Tags.name')
+                        ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+                        ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+                        ->where(['Titles.name =' => $name])
+                        ->get()                     
+                        ->getResultArray();
+
+        $title = $this->builder
+                        ->where(['Titles.name =' => $name])
+                        ->get()                     
+                        ->getRowArray();
+
+        $title['genres'] = [];
+        for ($i = 0; $i < count($genres); $i++) {
+            $title['genres'][$i] = $genres[$i]['name'];
+        }
+
+        return $title;
+    }
+
+    function getByTag($id)
+    {
         return $this->builder
-                    ->where(['name =' => $name])
+                    ->select('Titles.*')
+                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+                    ->where(['Tags.id =' => $id])
                     ->get()                     
-                    ->getRowArray();
+                    ->getResult();
     }
 }

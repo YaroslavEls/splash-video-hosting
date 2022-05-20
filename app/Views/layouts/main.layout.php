@@ -11,13 +11,7 @@
 <body>
 <?= $this->include('partials/header'); ?>
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-            <?= $this->renderSection('content'); ?>
-        </div>
-    </div>
-</div>
+<?= $this->renderSection('content'); ?>
 
 <?= $this->include('partials/footer'); ?>
 </body>

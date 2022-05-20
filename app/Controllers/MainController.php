@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TitleModel;
 
-class Main extends BaseController
+class MainController extends BaseController
 {
     public function index()
     {
