@@ -2,10 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\TitleModel;
+
 class Main extends BaseController
 {
     public function index()
     {
-        return view('home.php');
+        $db = db_connect();
+        $model = new TitleModel($db);
+        $data = $model->getSome(12);
+        
+        return view('home.php', ['data' => $data]);
     }
 }

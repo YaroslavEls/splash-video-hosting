@@ -1,10 +1,10 @@
-<?= $this->extend('layouts/main'); ?>
+<?= $this->extend('layouts/mainLayout'); ?>
 
 
 <?= $this->section('content'); ?>
 
-<?php for($i = 0; $i < 12; $i++) : ?>
-    <?= $this->include('partials/card'); ?>
+<?php for($i = 0; $i < count($data); $i++) : ?>
+    <?= view('partials/card', ['num' => $i]); ?>
 <?php endfor ?>
 
 <?= $this->endSection(); ?>
