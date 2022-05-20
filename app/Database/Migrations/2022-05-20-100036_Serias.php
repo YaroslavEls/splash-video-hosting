@@ -16,7 +16,6 @@ class Serias extends Migration
             ],
             'link'     => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
             ],
             'title_id'       => [
                 'type'           => 'INT',

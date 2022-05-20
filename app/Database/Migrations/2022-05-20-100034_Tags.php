@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Lists extends Migration
+class Asd extends Migration
 {
     public function up()
     {
@@ -17,24 +17,17 @@ class Lists extends Migration
             ],
             'name'     => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
             ],
-            'owner'       => [
-                'type'           => 'INT',
-                'constraint'     => 8,
-                'unsigned'       => true,
-            ],
-            'public'     => [
+            'genre'     => [
                 'type'           => 'bool',
             ],
         ]);
-        
         $this->forge->addKey('id', true);
-        $this->forge->createTable('Lists');
+        $this->forge->createTable('Tags');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Lists');
+        $this->forge->dropTable('Tags');
     }
 }

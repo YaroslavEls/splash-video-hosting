@@ -18,8 +18,8 @@ class TitlesSeeder extends Seeder
     {
         $faker = Factory::create();
         return [
-            'name' => $faker->word,
-			'desc' => $faker->sentence(3),
+            'name' => $faker->sentence(3),
+			'desc' => $faker->sentence(50),
 			'rating' => $faker->numberBetween(0, 10),
 			'image' => $faker->filePath,
             'episodes' => $faker->numberBetween(1, 12),

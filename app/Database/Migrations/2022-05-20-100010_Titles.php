@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Profiles extends Migration
+class Qwe extends Migration
 {
     public function up()
     {
@@ -15,30 +15,30 @@ class Profiles extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'username'     => [
+            'name'     => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
             ],
-            'email'     => [
+            'desc'     => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
             ],
-            'password'     => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 255,
+            'rating'   => [
+                'type'          => 'float4',
             ],
             'image'     => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 255,
+                'type'          => 'VARCHAR',
+            ],
+            'episodes' => [
+                'type'          => 'INT',
+                'unsigned'      => true,
             ],
         ]);
-
+        
         $this->forge->addKey('id', true);
-        $this->forge->createTable('Profiles');
+        $this->forge->createTable('Titles');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Profiles');
+        $this->forge->dropTable('Titles');
     }
 }

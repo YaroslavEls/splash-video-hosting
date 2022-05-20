@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Tags extends Migration
+class Profiles extends Migration
 {
     public function up()
     {
@@ -15,20 +15,26 @@ class Tags extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'name'     => [
+            'username'     => [
                 'type'           => 'VARCHAR',
-                'constraint'     => 255,
             ],
-            'genre'     => [
-                'type'           => 'bool',
+            'email'     => [
+                'type'           => 'VARCHAR',
+            ],
+            'password'     => [
+                'type'           => 'VARCHAR',
+            ],
+            'image'     => [
+                'type'           => 'VARCHAR',
             ],
         ]);
+
         $this->forge->addKey('id', true);
-        $this->forge->createTable('Tags');
+        $this->forge->createTable('Profiles');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Tags');
+        $this->forge->dropTable('Profiles');
     }
 }
