@@ -31,11 +31,12 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'MainController::index');
+$routes->get('/', 'MainController');
 $routes->addRedirect('/profile', '/');
 $routes->get('/profile/(:any)', 'ProfileController::index/$1');
 $routes->addRedirect('/watch', '/');
-$routes->get('/watch/(:any)', 'WatchController::index/$1');
+$routes->get('/watch/(:segment)', 'WatchController::index/$1');
+$routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
 $routes->get('/genre', 'GenreController::list');
 $routes->get('/genre/(:any)', 'GenreController::index/$1');
 

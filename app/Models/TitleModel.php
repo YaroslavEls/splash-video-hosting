@@ -27,8 +27,25 @@ class TitleModel
                     ->getResult();
     }
 
+    function getLike($str)
+    {
+        return $this->builder
+                    ->like(['name' => $str])
+                    ->get()                     
+                    ->getResult();
+    }
+
     function getByName($name)
     {
+        $title = $this->builder
+                        ->where(['Titles.name =' => $name])
+                        ->get()                     
+                        ->getRow();
+
+        if (!$title) {
+            return;
+        }
+
         $genres = $this->builder
                         ->select('Tags.name')
                         ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
@@ -37,14 +54,9 @@ class TitleModel
                         ->get()                     
                         ->getResultArray();
 
-        $title = $this->builder
-                        ->where(['Titles.name =' => $name])
-                        ->get()                     
-                        ->getRowArray();
-
-        $title['genres'] = [];
+        $title->genres = [];
         for ($i = 0; $i < count($genres); $i++) {
-            $title['genres'][$i] = $genres[$i]['name'];
+            $title->genres[$i] = $genres[$i]['name'];
         }
 
         return $title;

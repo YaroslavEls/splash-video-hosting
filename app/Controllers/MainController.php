@@ -10,8 +10,15 @@ class MainController extends BaseController
     {
         $db = db_connect();
         $model = new TitleModel($db);
-        $data = $model->getAll();
+
+        if ($str = $this->request->getVar('search')) {
+            $data = $model->getLike($str);
+            $heading = 'Results: '.$str;
+        } else {
+            $data = $model->getAll();
+            $heading = 'Main Page';
+        }
         
-        return view('pages/main.php', ['data' => $data]);
+        return view('pages/main.php', ['data' => $data, 'heading' => $heading]);
     }
 }

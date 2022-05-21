@@ -5,13 +5,11 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-        <h1 style="margin-bottom:35px;">
-            <?php if (isset($heading)) : ?>
-                <?= $heading ?>
-            <?php else : ?>
-                Main Page
-            <?php endif ?>
-        </h1>
+        <h1 style="margin-bottom:35px;"><?= $heading ?></h1>
+
+        <?php if (!$data) : ?>
+            <h2>Nothing found :(</h2>
+        <?php endif ?>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
             <?php for($i = 0; $i < count($data); $i++) : ?>

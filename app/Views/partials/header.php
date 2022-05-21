@@ -42,8 +42,8 @@
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <span class="fs-4">Double header</span>
         </a>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" action="/">
+            <input name="search" type="search" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
     </div>
 </header>
