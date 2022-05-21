@@ -16,9 +16,9 @@ class GenreController extends BaseController
 
         if ($data) {
             $model = new TitleModel($db);
-            $data = $model->getByTag($data->id);
+            $data = $model->getByTag($data->id);  
             
-            return view('main.php', ['data' => $data]);
+            return view('pages/main.php', ['data' => $data, 'heading' => $arg]);
         } else {
             throw new PageNotFoundException();
         }
@@ -30,6 +30,6 @@ class GenreController extends BaseController
         $model = new TagModel($db);
         $data = $model->getAllGenres();
         
-        return view('genre.php', ['data' => $data]);
+        return view('pages/genre.php', ['data' => $data]);
     }
 }

@@ -14,7 +14,7 @@ class WatchController extends BaseController
         $data = $model->getByName($arg);
 
         if ($data) {
-            return view('watch.php', $data);
+            return view('pages/watch.php', $data);
         } else {
             throw new PageNotFoundException();
         }

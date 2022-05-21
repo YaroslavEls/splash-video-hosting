@@ -18,6 +18,6 @@ class ProfileController extends BaseController
             throw new PageNotFoundException();
         }
 
-        return view('profile.php', $data);
+        return view('pages/profile.php', $data);
     }
 }

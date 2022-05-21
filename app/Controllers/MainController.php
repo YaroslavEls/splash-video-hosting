@@ -10,8 +10,8 @@ class MainController extends BaseController
     {
         $db = db_connect();
         $model = new TitleModel($db);
-        $data = $model->getSome(12);
+        $data = $model->getAll();
         
-        return view('main.php', ['data' => $data]);
+        return view('pages/main.php', ['data' => $data]);
     }
 }

@@ -12,6 +12,13 @@ class TitleModel
         $this->builder = $dataBase->table('Titles');
     }
 
+    function getAll()
+    {
+        return $this->builder
+                    ->get()                     
+                    ->getResult();
+    }
+
     function getSome($amount)
     {
         return $this->builder
