@@ -22,3 +22,5 @@ class MainController extends BaseController
         return view('pages/main.php', ['data' => $data, 'heading' => $heading]);
     }
 }
+
+// test
