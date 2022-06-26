@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TitleModel;
 
-class MainController extends BaseController
+class CompilationController extends BaseController
 {
     public function index()
     {
@@ -16,7 +16,7 @@ class MainController extends BaseController
             return view('pages/search.php', ['data' => $data, 'heading' => $str]);
         } else {
             $data = $model->getAll();
-            return view('pages/main.php', ['data' => $data]);
+            return view('pages/compilations.php', ['data' => $data]);
         }
     }
 }

@@ -7,18 +7,12 @@
     <?= view('partials/menu_main') ?>
 
     <div class="novelties">
-        <div class="heading large">Новинки:</div>
-        <div class="list">
-            <?php for($i = 0; $i < 4; $i++) : ?>
-                <?= view('partials/seria_item', ['num' => $i]) ?>
-            <?php endfor ?>
-        </div>
-    </div>
+        <div class="heading medium">Результаты: <?= $heading ?></div>
 
-    <div class="divider"></div>
+        <?php if (!$data) : ?>
+            <h2>Ничего не найдено :(</h2>
+        <?php endif ?>
 
-    <div class="popular">
-        <div class="heading medium">Популярное:</div>
         <div class="list">
             <?php for($i = 0; $i < count($data); $i++) : ?>
                 <?= view('partials/seria_item', ['num' => $i]) ?>

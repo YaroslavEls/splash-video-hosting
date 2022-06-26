@@ -1,5 +1,5 @@
 <div class="menu">
-    <div class="item active">ГЛАВНАЯ</div>
-    <div class="item">Подборки</div>
-    <div class="item">Фильтры <span class="icon" style="background-image: url('<?= base_url('assets/svg/filter_icon.svg') ?>');"></span> </div>
+    <a href="/" class="item <?= explode('/', current_url())[4] == 'compilations' ? '' : 'active' ?>">Тайтлы</a>
+    <a href="/compilations" class="item <?= explode('/', current_url())[4] == 'compilations' ? 'active' : '' ?>">Подборки</a>
+    <a href="/" class="item">Фильтры <span class="icon" style="background-image: url('<?= base_url('assets/svg/filter_icon.svg') ?>');"></span> </a>
 </div>

@@ -39,6 +39,7 @@ $routes->get('/watch/(:segment)', 'WatchController::index/$1');
 $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
 $routes->get('/genre', 'GenreController::list');
 $routes->get('/genre/(:any)', 'GenreController::index/$1');
+$routes->get('/compilations', 'CompilationController');
 
 /*
  * --------------------------------------------------------------------
