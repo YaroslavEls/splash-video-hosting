@@ -3,20 +3,31 @@
 
 <?= $this->section('content'); ?>
 
-<div class="album py-5 bg-light">
-    <div class="container">
-        <h1 style="margin-bottom:35px;"><?= $heading ?></h1>
+<div class="content">
+    <?= view('partials/menu_main') ?>
 
-        <?php if (!$data) : ?>
-            <h2>Nothing found :(</h2>
-        <?php endif ?>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-            <?php for($i = 0; $i < count($data); $i++) : ?>
-                <?= view('partials/card', ['num' => $i]); ?>
+    <div class="novelties">
+        <div class="heading large">Новинки:</div>
+        <div class="list">
+            <?php for($i = 0; $i < 4; $i++) : ?>
+                <?= view('partials/seria_item', ['num' => $i]) ?>
             <?php endfor ?>
         </div>
     </div>
+
+    <div class="divider"></div>
+
+    <div class="popular">
+        <div class="heading medium">Популярное:</div>
+        <div class="list">
+            <?php for($i = 0; $i < count($data); $i++) : ?>
+                <?= view('partials/seria_item', ['num' => $i]) ?>
+            <?php endfor ?>
+        </div>
+    </div>
+
+    <?= view('partials/pagination') ?>
+
 </div>
 
 <?= $this->endSection(); ?>

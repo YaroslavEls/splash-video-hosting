@@ -1,0 +1,323 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Anime Ace v05';
+}
+
+body {
+    margin: 0;
+    background: #FAA4BD;
+}
+
+.bg_wrap {
+    width: 1440px;
+    margin: 0 auto;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 50% 20px;
+}
+
+
+/* HEADINGS */
+
+.heading {
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #352632;
+    text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+h1.heading {
+    font-size: 65px;
+    line-height: 72px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-bottom: 3px solid #F7F2F4;
+    padding-bottom: 8.5px;
+    margin: 75px 0 98px;
+}
+
+h1.heading span {
+    color: #F7F2F4;
+    padding-bottom: 8.5px;
+    border-bottom: 3px solid #352632;
+}
+
+.heading.large {
+    font-size: 70px;
+    line-height: 77px;
+    margin-bottom: 10px;  
+}
+
+.heading.medium {
+    font-size: 50px;
+    line-height: 55px;
+    margin-bottom: 20px;
+}
+
+.heading.small {
+    font-size: 40px;
+    line-height: 44px;
+}
+
+
+/* HEADER */
+
+.header {
+    position: relative;
+    background: #FAA4BD;
+    border-bottom: 12px solid #FFFFFF;
+}
+
+.header .registration {
+    position: absolute;
+    top: 12px;
+    right: 140px;
+    padding: 10px 26px;
+    background: #FFFFFF;
+    box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.header .login {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    padding: 10px 26px;
+    background: #FFFFFF;
+    box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.header .lang {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    width: 55px;
+    height: 55px;
+    background-image: url("VecLang.svg");
+}
+
+.header .wrapper {
+    display: flex;
+}
+
+.header .wrapper .logo {
+    font-weight: 300;
+    font-size: 124px;
+    line-height: 137px;
+    letter-spacing: 0.1em;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 57px 18px;
+    margin: 35px 20px 0 35px;
+}
+
+.header .wrapper form {
+    position: relative;
+    width: fit-content;
+}
+
+.header .wrapper form input {
+    width: 518px;
+    background: none;
+    padding: 22px 35px;
+    border: 2px solid #352632;
+    border-radius: 63px;
+    font-weight: 300;
+    font-size: 29px;
+    line-height: 32px;
+    letter-spacing: 0.3em;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 14px;
+}
+
+.header .wrapper form .icon {
+    position: absolute;
+    top: 23.5px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+}
+
+
+/* MAIN PAGE CONTENT */
+
+.content {
+    position: relative;
+    padding-top: 131px;
+}
+
+.content .novelties {
+    margin-bottom: 24px;
+    padding-left: 345px;
+}
+
+.content .divider {
+    height: 12px;
+    background: #FAA4BD;
+    border-radius: 10px 0 0 10px;
+    margin: 0 0 14px 284px;
+}
+
+.content .popular {
+    padding-left: 345px;
+    margin-bottom: 189px;
+}
+
+.content .popular .list .item {
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 4px solid #FAA4BD;
+}
+
+
+/* PAGINATION */
+
+.pagination .arrow-top {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 15px;
+}
+
+.pagination .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .page .arrow-left {
+    width: 10px;
+    height: 21px;
+}
+
+.pagination .page .number {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: 0.05em;
+    color: #352632;
+    margin: 0 25px; 
+}
+
+.pagination .page .arrow-right {
+    width: 10px;
+    height: 21px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    height: 300px;
+}
+
+
+/* MENUS */
+
+.menu {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+}
+
+.menu .item {
+    position: relative;
+    text-align: center;
+    border: 2px solid #352632;
+    border-radius: 25px;
+    width: 217px;
+    padding: 10px 0;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #352632;
+    margin-bottom: 30px;
+}
+
+.menu .item.active {
+    border: 2px solid #F7F2F4;
+    color: #F7F2F4;
+}
+
+.menu .item.active::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -15px;
+    display: block;
+    width: 4px;
+    height: 50px;
+    border-radius: 50px;
+    background: #F7F2F4;
+}
+
+.menu .item .icon {
+    display: inline-block;
+    width: 22px;
+    height: 18px;
+}
+
+
+/* LISTS */
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list .item {
+    margin-right: 48px;
+}
+
+.list .item .image {
+    width: 210px;
+    height: 270px;
+    margin-bottom: 10px;
+    background: #F7F2F4;
+    box-shadow: 0px 14px 10px -8px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 10px 0px 0px;
+}
+
+.list .item .image .mark {
+    width: 38px;
+    height: 50px;
+    margin: 0 0 0 auto;
+    text-align: center;
+    padding-top: 8px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.01em;
+    color: #4C4C4C;
+}
+
+.list .item .title {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: #352632;
+    margin-bottom: 12px;
+}
+
+.list .item .views {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.1em;
+    color: rgba(53, 38, 50, 0.7);
+}
+
+.list .item .views span.icon {
+    display: inline-block;
+    position: relative;
+    top: 1.5px;
+    width: 22px;
+    height: 17px;
+}
