@@ -2,22 +2,22 @@
 
 namespace App\Controllers;
 
-use App\Models\ProfileModel;
+use App\Models\UserModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
-class ProfileController extends BaseController
+class UserController extends BaseController
 {
     public function index($arg)
     {
-        $model = new ProfileModel();
+        $model = new UserModel();
         $profile = $model->find($arg);
 
         if ($profile) {
             $data = ['id' => $profile['username']];
         } else {
-            throw new PageNotFoundException();
+            throw new PageNotFoundException('No such user found');
         }
 
-        return view('pages/profile.php', $data);
+        return view('pages/user.php', $data);
     }
 }

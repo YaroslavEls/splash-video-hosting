@@ -2,7 +2,7 @@
 
 namespace App\Controllers; 
 
-use App\Models\ProfileModel;
+use App\Models\UserModel;
   
 class LoginController extends BaseController
 {
@@ -15,7 +15,7 @@ class LoginController extends BaseController
     public function auth()
     {
         $session = session();
-        $userModel = new ProfileModel();
+        $userModel = new UserModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
         

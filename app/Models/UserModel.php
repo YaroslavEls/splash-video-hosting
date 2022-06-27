@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class ProfileModel extends Model
+class UserModel extends Model
 {
     protected $table = 'Profiles';
     protected $primaryKey = 'id';

@@ -33,7 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'MainController');
 $routes->addRedirect('/profile', '/');
-$routes->get('/profile/(:any)', 'ProfileController::index/$1');
+$routes->get('/user/(:any)', 'UserController::index/$1');
 $routes->addRedirect('/watch', '/');
 $routes->get('/watch/(:segment)', 'WatchController::index/$1');
 $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
