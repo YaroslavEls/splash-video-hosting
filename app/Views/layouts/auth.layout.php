@@ -9,14 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
-    <link href="<?= base_url('assets/styles/style.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/styles/auth.css'); ?>" rel="stylesheet">
 </head>
 <body>
-    <div class="bg_wrap" style="background-image: url('<?= base_url('assets/svg/bg_top.svg'); ?>');">
-        <?= $this->include('partials/header'); ?>
-        <?= $this->renderSection('content'); ?>
-        <?= $this->include('partials/footer'); ?>
-    </div>
+    <?= $this->renderSection('content'); ?>
 </body>
 <style>
     @font-face {

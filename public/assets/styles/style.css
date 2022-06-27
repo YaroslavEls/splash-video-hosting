@@ -39,7 +39,6 @@ h1.heading {
     border-bottom: 3px solid #F7F2F4;
     padding-bottom: 8.5px;
     margin: 75px 0 98px;
-    
 }
 
 h1.heading a {
@@ -81,24 +80,50 @@ h1.heading span {
     border-bottom: 12px solid #FFFFFF;
 }
 
-.header .registration {
+.header .registration, .header .login {
+    display: block;
+    text-decoration: none;
+    color: #000;
     position: absolute;
     top: 12px;
-    right: 140px;
     padding: 10px 26px;
     background: #FFFFFF;
     box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
 }
 
+.header .registration {
+    right: 140px;
+}
+
 .header .login {
-    position: absolute;
-    top: 12px;
     right: 10px;
-    padding: 10px 26px;
-    background: #FFFFFF;
-    box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
+}
+
+.header .user_photo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.header .user_name {
+    display: block;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #FFFFFF;
+    position: absolute;
+    top: 140px;
+    right: 25px;
 }
 
 .header .lang {

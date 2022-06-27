@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Anime Ace v05';
+}
+
+body {
+    margin: 0;
+}
+
+.auth_form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 1057px;
+    border-radius: 75px;
+    height: 520px;
+    background: #fff;
+    border: 3px solid #FAA4BD; 
+}
+
+.auth_form.reg_form {
+    height: 675px;
+}
+
+.auth_form .nav_options {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 1057px;
+    transform: translateY(-150%);
+}
+
+.auth_form .nav_options .option {
+    text-decoration: none;
+    color: #000;
+}
+
+.auth_form .heading {
+    color: #FFFFFF;
+    text-shadow: none;
+    background: #FAA4BD;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 75px 75px 0px 0px;
+    padding: 30px 0;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 50px;
+    line-height: 55px;
+}
+
+.auth_form .fields {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    padding: 0 150px;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: 0.2em;
+    color: #000000;
+}
+
+.auth_form .fields .name {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: 0.2em;
+    color: #000000;
+    margin-bottom: 23px;
+}
+
+.auth_form .fields input {
+    opacity: 0.5;
+    border: 2px solid #000000;
+    border-radius: 25px;
+    margin-bottom: 23px;
+    text-transform: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 33px;
+    letter-spacing: 0.2em;
+    color: #000000;
+    height: 39px;
+}
+
+.auth_form .buttons {
+    display: flex;
+    justify-content: center;
+    margin: 136px 42px 0;
+    padding-top: 11px;
+    border-top: 3px solid rgba(250, 164, 189, 0.5);
+}
+
+.auth_form .buttons .confirm, .buttons .cancel {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    border-radius: 32.5px;
+    border: 0;
+}
+
+.auth_form .buttons .confirm {
+    margin-right: 22px;
+    padding: 20px 35px;
+    background: #FAA4BD;
+}
+
+.auth_form .buttons .cancel {
+    margin-left: 22px;
+    padding: 20px 45px;
+    background: #222222;
+}

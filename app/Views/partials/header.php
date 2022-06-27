@@ -1,6 +1,11 @@
 <div class="header">
-    <div class="registration">Регистрация</div>
-    <div class="login">Войти</div>
+    <?php if (session()->get('isLoggedIn')): ?>
+        <a href="/" class="user_photo"></a>
+        <a href="/" class="user_name"><?= session()->get('username') ?></a>
+    <?php else: ?>
+        <a href="/registration" class="registration">Регистрация</a>
+        <a href="/login" class="login">Войти</a>
+    <?php endif; ?>
     <div class="lang" style="background-image: url('<?= base_url('assets/svg/lang_icon.svg'); ?>');"></div>
     <div class="wrapper">
         <a href="/" class="logo">SH</a>

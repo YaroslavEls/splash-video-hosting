@@ -8,6 +8,8 @@ class CompilationController extends BaseController
 {
     public function index()
     {
+        session()->remove('isLoggedIn');
+
         $db = db_connect();
         $model = new TitleModel($db);
 
