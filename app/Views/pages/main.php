@@ -20,7 +20,7 @@
     <div class="popular">
         <div class="heading medium">Популярное:</div>
         <div class="list">
-            <?php for($i = 0; $i < 12; $i++) : ?>
+            <?php for($i = 0+4; $i < count($data); $i++) : ?>
                 <?= view('partials/seria_item', ['num' => $i]) ?>
             <?php endfor ?>
         </div>

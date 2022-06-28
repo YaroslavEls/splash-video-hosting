@@ -1,6 +1,6 @@
 <div class="comp_list">
     <div class="heading small">Compilation name</div>
-    <?php for($i = 0; $i < 3; $i++) : ?>   
+    <?php for($i = 0; $i < 12; $i++) : ?>   
         <div class="item">
             <div class="image"></div>
             <div class="info">

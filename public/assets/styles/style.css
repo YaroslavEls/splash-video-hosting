@@ -16,6 +16,11 @@ body {
     background-position: 50% 20px;
 }
 
+body.user .bg_wrap {
+    background-position: 50% 0;
+    padding-top: 30px;
+}
+
 .content {
     position: relative;
     padding-top: 131px;
@@ -226,7 +231,7 @@ h1.heading span {
     margin-top: 189px;
 }
 
-.pagination .arrow-top {
+.pagination .arrow-top, .arrow-top {
     width: 45px;
     height: 45px;
     margin: 0 auto 15px;
@@ -323,6 +328,7 @@ h1.heading span {
 }
 
 .list .item {
+    max-width: 210px;
     margin-right: 48px;
 }
 
@@ -356,6 +362,12 @@ h1.heading span {
     letter-spacing: 0.05em;
     color: #352632;
     margin-bottom: 12px;
+
+    height: 52px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
 }
 
 .list .item .views {

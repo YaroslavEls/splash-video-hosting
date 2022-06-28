@@ -1,11 +1,11 @@
 <div class="item">
-    <div class="image">
-        <div class="mark" style="background-image: url('<?= base_url('assets/svg/mark_icon.svg') ?>');">9.0</div>
+    <div class="image" style="background-image: url('<?= base_url('images/'.$data[$num]->image) ?>');">
+        <div class="mark" style="background-image: url('<?= base_url('assets/svg/mark_icon.svg') ?>');"><?= $data[$num]->rating ?></div>
     </div>
     <div class="title">
-        Anime Name
+        <?= $data[$num]->name ?>
     </div>
     <div class="views">
-        12134 <span class="icon" style="background-image: url('<?= base_url('assets/svg/views_icon.svg') ?>');"></span>
+        0 <span class="icon" style="background-image: url('<?= base_url('assets/svg/views_icon.svg') ?>');"></span>
     </div>
 </div>
