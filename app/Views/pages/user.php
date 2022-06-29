@@ -7,7 +7,7 @@
     <div class="heading small">Любимое:</div>
     <div class="list">
         <?php for($i = 0; $i < 5; $i++) : ?>
-            <?= view('partials/seria_item', ['num' => $i]) ?>
+            <?= view('partials/title-item', ['num' => $i]) ?>
         <?php endfor ?>
     </div>
 </div>

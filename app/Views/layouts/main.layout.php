@@ -14,7 +14,11 @@
 <body>
     <div class="bg_wrap" style="background-image: url('<?= base_url('assets/svg/bg_top.svg'); ?>');">
         <?= $this->include('partials/header'); ?>
-        <?= $this->renderSection('content'); ?>
+        <div class="content">
+            <?= view('partials/menu-main') ?>
+            <?= $this->renderSection('content'); ?>
+            <?= view('partials/pagination') ?>
+        </div>
         <?= $this->include('partials/footer'); ?>
     </div>
     <script src="<?= base_url('assets/js/script.js'); ?>"></script>

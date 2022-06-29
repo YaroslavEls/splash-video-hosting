@@ -40,7 +40,7 @@ class GenreController extends BaseController
 
         $data = $model->getByTagPerPage($data->id, $this->current['perPage'], $page);  
         
-        return view('pages/search.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
+        return view('pages/listing.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
 
     }
 
@@ -71,6 +71,6 @@ class GenreController extends BaseController
         }
 
         $data = $model->getLikePerPage($arg, $this->current['perPage'], $page);
-        return view('pages/search.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
+        return view('pages/listing.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
     }
 }
