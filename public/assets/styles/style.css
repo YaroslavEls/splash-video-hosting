@@ -34,6 +34,8 @@ body.user .bg_wrap {
 /* HEADINGS */
 
 .heading {
+    display: block;
+    text-decoration: none;
     font-style: normal;
     font-weight: 300;
     letter-spacing: 0.1em;
@@ -455,6 +457,10 @@ h1.heading span {
     line-height: 26px;
     letter-spacing: 0.05em;
     color: #352632;
+    white-space: nowrap;
+    max-width: 849px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .comp_list .item .info .genres {

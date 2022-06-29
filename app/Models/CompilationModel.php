@@ -58,10 +58,33 @@ class CompilationModel
         return $lists;
     }
 
-    function getById($id)
+    function getById($id, $perPage, $page)
     {
         return $this->builder
-                    ->where(['id =' => $id])
+                    ->select('Titles.*')
+                    ->join('TitlesLists', 'Lists.id = TitlesLists.list_id')
+                    ->join('Titles', 'Titles.id = TitlesLists.title_id')
+                    ->where(['TitlesLists.list_id =' => $id])
+                    ->limit($perPage, ($page-1)*$perPage)
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function countById($id)
+    {
+        return $this->builder
+                    ->select('Titles.*')
+                    ->join('TitlesLists', 'Lists.id = TitlesLists.list_id')
+                    ->join('Titles', 'Titles.id = TitlesLists.title_id')
+                    ->where(['TitlesLists.list_id =' => $id])
+                    ->countAllResults();
+    }
+
+    function getNameById($id)
+    {
+        return $this->builder
+                    ->select('Lists.name')
+                    ->where(['Lists.id =' => $id])
                     ->get()                     
                     ->getRow();
     }

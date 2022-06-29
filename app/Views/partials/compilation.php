@@ -1,5 +1,5 @@
 <div class="comp_list">
-    <div class="heading small"><?= $item->name ?></div>
+    <a href="/compilations/<?= $item->id ?>" class="heading small"><?= $item->name ?></a>
     <div class="wrapper">
         <?php for($i = 0; $i < count($item->titles); $i++) : ?>   
             <div class="item">
