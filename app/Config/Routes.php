@@ -32,20 +32,25 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'MainController');
-$routes->addRedirect('/profile', '/');
-$routes->get('/user/(:any)', 'UserController::index/$1');
-$routes->addRedirect('/watch', '/');
+
+$routes->get('/compilations', 'CompilationController');
+$routes->get('/compilations/(:any)', 'CompilationController::list/$1');
+
+$routes->get('/filters', 'FilterController::index');
+$routes->get('/genre/(:any)', 'FilterController::genre/$1');
+$routes->get('/tag/(:any)', 'FilterController::tag/$1');
+$routes->get('/search/(:any)', 'FilterController::search/$1');
+
 $routes->get('/watch/(:segment)', 'WatchController::index/$1');
 $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
-$routes->get('/genre', 'GenreController::list');
-$routes->get('/genre/(:any)', 'GenreController::index/$1');
-$routes->get('/compilations', 'CompilationController');
+
 $routes->get('/login', 'LoginController');
 $routes->post('/login', 'LoginController::auth');
 $routes->get('/registration', 'RegistrationController');
 $routes->post('/registration', 'RegistrationController::auth');
-$routes->get('/search/(:any)', 'GenreController::search/$1');
-$routes->get('/compilations/(:any)', 'CompilationController::list/$1');
+
+$routes->get('/user/(:any)', 'UserController::index/$1');
+
 
 /*
  * --------------------------------------------------------------------

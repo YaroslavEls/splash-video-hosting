@@ -12,6 +12,30 @@ class TagModel
         $this->builder = $dataBase->table('Tags');
     }
 
+    function getAll()
+    {
+        return $this->builder
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function getAllTags() 
+    {
+        return $this->builder
+                    ->where(['genre =' => false])
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function getTagByName($name)
+    {
+        return $this->builder
+                    ->where(['genre =' => false])
+                    ->where(['name =' => $name])
+                    ->get()                     
+                    ->getRow();
+    }
+
     function getAllGenres()
     {
         return $this->builder
