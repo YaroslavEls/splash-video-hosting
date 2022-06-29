@@ -3,15 +3,10 @@
 
 <?= $this->section('content'); ?>
 
-<div class="comp_novelties">
-    <div class="heading medium" style="margin-bottom:30px">Новое:</div>
-    <?= view('partials/compilation') ?>
-</div>
-
 <div class="comp_popular">
-    <div class="heading medium" style="margin-bottom:30px">Популярное:</div>
-    <?php for($i = 0; $i < 3; $i++) : ?>
-        <?= view('partials/compilation', ['num' => $i]) ?>
+    <div class="heading medium" style="margin-bottom:35px">Популярное:</div>
+    <?php for($i = 0; $i < count($data); $i++) : ?>
+        <?= view('partials/compilation', ['item' => $data[$i]]) ?>
     <?php endfor ?>
 </div>
 
