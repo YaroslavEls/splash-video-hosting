@@ -4,14 +4,14 @@
 <?= $this->section('content'); ?>
 
 <div class="novelties">
-    <div class="heading large">Новинки:</div>
+    <a href="/tag/new" class="heading large">Новинки:</a>
     <?= view('partials/slider', ['data' => $novelties]) ?>
 </div>
 
 <div class="divider"></div>
 
 <div class="popular">
-    <div class="heading medium">Популярное:</div>
+    <a href="/tag/popular" class="heading medium">Популярное:</a>
     <?= view('partials/titles-list', ['data' => $popular]) ?>
 </div>
 

@@ -88,4 +88,49 @@ class CompilationModel
                     ->get()                     
                     ->getRow();
     }
+
+    function getLike($str, $perPage, $page)
+    {
+        $lists = $this->builder
+                        ->like(['name' => $str], '', 'both', null, true)
+                        ->limit($perPage, ($page-1)*$perPage)
+                        ->get()
+                        ->getResult();
+
+        if (!$lists) {
+            return $lists;
+        }
+        
+        $ids = array();
+        for ($i = 0; $i < count($lists); $i++) {
+            $lists[$i]->titles = array();
+            array_push($ids, $lists[$i]->id);
+        }
+
+        $titles = $this->builder
+                        ->select('Titles.*')
+                        ->select('TitlesLists.list_id')
+                        ->join('TitlesLists', 'Lists.id = TitlesLists.list_id')
+                        ->join('Titles', 'Titles.id = TitlesLists.title_id')
+                        ->whereIn('TitlesLists.list_id', $ids)
+                        ->get()                     
+                        ->getResult();
+
+        for ($i = 0; $i < count($lists); $i++) {
+            for ($t = 0; $t < count($titles); $t++) {
+                if ($titles[$t]->list_id == $lists[$i]->id) {
+                    array_push($lists[$i]->titles, $titles[$t]);
+                }
+            }
+        }
+
+        return $lists;
+    }
+
+    function countLike($str)
+    {
+        return $this->builder
+                    ->like(['name' => $str])
+                    ->countAllResults();
+    }
 }

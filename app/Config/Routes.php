@@ -34,12 +34,13 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'MainController');
 
 $routes->get('/compilations', 'CompilationController');
-$routes->get('/compilations/(:any)', 'CompilationController::list/$1');
+$routes->get('/compilations/(:num)', 'CompilationController::list/$1');
 
 $routes->get('/filters', 'FilterController::index');
 $routes->get('/genre/(:any)', 'FilterController::genre/$1');
 $routes->get('/tag/(:any)', 'FilterController::tag/$1');
-$routes->get('/search/(:any)', 'FilterController::search/$1');
+$routes->get('/search/(:any)', 'FilterController::searchTitle/$1');
+$routes->get('/compilations/search/(:any)', 'FilterController::searchCompilation/$1');
 
 $routes->get('/watch/(:segment)', 'WatchController::index/$1');
 $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
@@ -49,7 +50,7 @@ $routes->post('/login', 'LoginController::auth');
 $routes->get('/registration', 'RegistrationController');
 $routes->post('/registration', 'RegistrationController::auth');
 
-$routes->get('/user/(:any)', 'UserController::index/$1');
+$routes->get('/user/(:num)', 'UserController::index/$1');
 
 
 /*

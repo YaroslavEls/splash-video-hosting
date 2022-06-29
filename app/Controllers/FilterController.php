@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\TagModel;
 use App\Models\TitleModel;
+use App\Models\CompilationModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class FilterController extends BaseController
@@ -90,7 +91,7 @@ class FilterController extends BaseController
         return view('pages/listing.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
     }
 
-    public function search($arg)
+    public function searchTitle($arg)
     {
         $db = db_connect();
         $model = new TitleModel($db);
@@ -109,5 +110,26 @@ class FilterController extends BaseController
 
         $data = $model->getLikePerPage($arg, $this->current['perPage'], $page);
         return view('pages/listing.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
+    }
+
+    public function searchCompilation($arg)
+    {
+        $db = db_connect();
+        $model = new CompilationModel($db);
+
+        if ($this->current['filter'] != $arg) {
+            $this->current['filter'] = $arg;
+            $count = $model->countLike($arg);
+            $this->current['pages'] = $count == 0 ? 1 : ceil($count/$this->current['perPage']);
+        }
+
+        $page = $this->request->getVar('page');
+        $page = $page == 0 ? 1 : $page;
+        if ($page > $this->current['pages'] || $page < 0) {
+            throw new PageNotFoundException();
+        }
+
+        $data = $model->getLike($arg, $this->current['perPage'], $page);
+        return view('pages/compilations.php', ['data' => $data, 'heading' => $arg, 'page' => $page, 'pages' => $this->current['pages']]);
     }
 }
