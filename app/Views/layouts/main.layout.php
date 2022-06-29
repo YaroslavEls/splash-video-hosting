@@ -17,6 +17,7 @@
         <?= $this->renderSection('content'); ?>
         <?= $this->include('partials/footer'); ?>
     </div>
+    <script src="<?= base_url('assets/js/script.js'); ?>"></script>
 </body>
 <style>
     @font-face {

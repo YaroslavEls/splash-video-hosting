@@ -3,6 +3,10 @@
     font-family: 'Anime Ace v05';
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background: #FAA4BD;
@@ -235,6 +239,7 @@ h1.heading span {
     width: 45px;
     height: 45px;
     margin: 0 auto 15px;
+    cursor: pointer;
 }
 
 .pagination .page {

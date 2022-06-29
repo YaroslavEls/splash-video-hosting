@@ -19,6 +19,20 @@ class TitleModel
                     ->getResult();
     }
 
+    function getAllPerPage($perPage, $page) 
+    {
+        return $this->builder
+                    ->limit($perPage, ($page-1)*$perPage)
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function countAll()
+    {
+        return $this->builder
+                    ->countAllResults();
+    }
+
     function getSome($amount)
     {
         return $this->builder
@@ -30,9 +44,25 @@ class TitleModel
     function getLike($str)
     {
         return $this->builder
-                    ->like(['name' => $str])
+                    ->like(['name' => $str], '', 'both', null, true)
                     ->get()                     
                     ->getResult();
+    }
+
+    function getLikePerPage($str, $perPage, $page)
+    {
+        return $this->builder
+                    ->like(['name' => $str], '', 'both', null, true)
+                    ->limit($perPage, ($page-1)*$perPage)
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function countTitlesLike($str)
+    {
+        return $this->builder
+                    ->like(['name' => $str])
+                    ->countAllResults();
     }
 
     function getByName($name)
@@ -62,6 +92,16 @@ class TitleModel
         return $title;
     }
 
+    function countTitlesPerTag($id)
+    {
+        return $this->builder
+                    ->select('Titles.*')
+                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+                    ->where(['Tags.id =' => $id])
+                    ->countAllResults();
+    }
+
     function getByTag($id)
     {
         return $this->builder
@@ -69,6 +109,17 @@ class TitleModel
                     ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
                     ->join('Tags', 'TitlesTags.tag_id = Tags.id')
                     ->where(['Tags.id =' => $id])
+                    ->get()                     
+                    ->getResult();
+    }
+
+    function getByTagPerPage($id, $perPage, $page) {
+        return $this->builder
+                    ->select('Titles.*')
+                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+                    ->where(['Tags.id =' => $id])
+                    ->limit($perPage, ($page-1)*$perPage)
                     ->get()                     
                     ->getResult();
     }

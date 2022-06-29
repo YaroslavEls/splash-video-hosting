@@ -6,7 +6,7 @@
 <div class="content">
     <?= view('partials/menu_main') ?>
 
-    <div class="novelties">
+    <div class="popular">
         <div class="heading medium">Результаты: <?= $heading ?></div>
 
         <?php if (!$data) : ?>
@@ -15,7 +15,7 @@
 
         <div class="list">
             <?php for($i = 0; $i < count($data); $i++) : ?>
-                <?= view('partials/seria_item', ['num' => $i]) ?>
+                <?= view('partials/seria_item', ['item' => $data[$i]]) ?>
             <?php endfor ?>
         </div>
     </div>

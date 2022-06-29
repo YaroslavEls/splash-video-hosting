@@ -44,6 +44,7 @@ $routes->get('/login', 'LoginController');
 $routes->post('/login', 'LoginController::auth');
 $routes->get('/registration', 'RegistrationController');
 $routes->post('/registration', 'RegistrationController::auth');
+$routes->get('/search/(:any)', 'GenreController::search/$1');
 
 /*
  * --------------------------------------------------------------------
