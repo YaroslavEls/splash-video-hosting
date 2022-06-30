@@ -14,11 +14,12 @@ class WatchController extends BaseController
         $model = new TitleModel($db);
         $data = $model->getByName($arg);
 
-        if ($data) {
-            return view('pages/watch.php', ['data' => $data]);
-        } else {
+        if (!$data) {
             throw new PageNotFoundException('no such title');
-        }
+        } 
+        
+        $novelties = $model->getByTag(1); // 1 = id of tag 'new'
+        return view('pages/watch.php', ['data' => $data, 'novelties' => $novelties]);
     }
 
     public function episode($arg1, $arg2)

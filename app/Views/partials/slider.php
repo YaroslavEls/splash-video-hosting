@@ -9,9 +9,17 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script>
-    const swiper = new Swiper('.swiper', {
-        loop: true,
-        slidesPerView: 4.5,
-        spaceBetween: 48,
-    });
+    if (document.body.classList.contains('watch')) {
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 5.6,
+            spaceBetween: 48,
+        });
+    } else {
+        const swiper = new Swiper('.swiper', {
+            loop: true,
+            slidesPerView: 4.5,
+            spaceBetween: 48,
+        });
+    }
 </script>
