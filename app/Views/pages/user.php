@@ -14,12 +14,16 @@
 
 <div class="user_comps">
     <div class="comps_menu">
-        <?php for($i = 0; $i < count($user->compilationsDefault); $i++) : ?>
-            <a href="/user/<?= $user->id ?>?list=<?= $user->compilationsDefault[$i]->id ?>" class="item <?= $list->id == $user->compilationsDefault[$i]->id ? 'active' : '' ?>"><?= $user->compilationsDefault[$i]->name ?></a>
+        <?php for($i = 0; $i < count($user->compsDefault); $i++) : ?>
+            <a href="/user/<?= $user->id ?>?list=<?= $user->compsDefault[$i]->id ?>" class="item <?= $list->id == $user->compsDefault[$i]->id ? 'active' : '' ?>"><?= $user->compsDefault[$i]->name ?></a>
         <?php endfor ?>
         <div class="divider">Подборки:</div>
-        <?php for($i = 0; $i < count($user->compilations); $i++) : ?>
-            <a href="/user/<?= $user->id ?>?list=<?= $user->compilations[$i]->id ?>" class="item <?= $list->id == $user->compilations[$i]->id ? 'active' : '' ?>"><?= $user->compilations[$i]->name ?></a>
+        <form action="<?= base_url() ?>/create" method="post" id="create">
+            <input type="text" name="name" style="display:none">
+            <div class="item create-comp">+ Создать</div>
+        </form>
+        <?php for($i = 0; $i < count($user->comps); $i++) : ?>
+            <a href="/user/<?= $user->id ?>?list=<?= $user->comps[$i]->id ?>" class="item <?= $list->id == $user->comps[$i]->id ? 'active' : '' ?>"><?= $user->comps[$i]->name ?></a>
         <?php endfor ?>
     </div>
     <div class="divider"></div>

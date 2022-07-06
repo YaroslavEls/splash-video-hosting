@@ -7,6 +7,15 @@
     <div class="fcol">
         <img src="<?= base_url('images/'.$data->image) ?>" alt="<?= $data->name ?>">
         <div class="add">Добавить в</div>
+        <div class="add-menu disabled">
+            <form action="<?= base_url() ?>/add" method="post" id="add">
+                <input type="number" name="title" class="disabled" value="<?= $data->id ?>">
+                <input type="number" name="list" class="disabled">
+                <?php for ($i = 0; $i < count(session()->get('comps')); $i++) : ?>
+                    <div comp_id="<?= session()->get('comps')[$i]->id ?>"><?= session()->get('comps')[$i]->name ?></div>
+                <?php endfor; ?>
+            </form>
+        </div>
     </div>
     <div class="scol">
         <div class="stars"></div>

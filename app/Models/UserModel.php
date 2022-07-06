@@ -19,10 +19,34 @@ class UserModel
 
     function getUserByEmail($str)
     {
-        return $this->builder
+        $user = $this->builder
                     ->where(['email' => $str])
                     ->get()                     
                     ->getRow();
+        
+        if (!$user) {
+            return;
+        }
+
+        $comps = $this->builder
+                            ->select('Lists.*')
+                            ->join('Lists', 'Profiles.id = Lists.owner')
+                            ->where(['Profiles.email' => $str])
+                            ->get()                     
+                            ->getResult();
+
+        $user->comps = [];
+        $user->compsDefault = [];
+
+        for ($i = 0; $i < count($comps); $i++) {
+            if ($comps[$i]->default == 't') {
+                array_push($user->compsDefault, $comps[$i]);
+            } else {
+                array_push($user->comps, $comps[$i]);
+            }
+        }
+
+        return $user;
     }
 
     function getUserById($num)
@@ -36,21 +60,21 @@ class UserModel
             return;
         }
 
-        $compilations = $this->builder
+        $comps = $this->builder
                             ->select('Lists.*')
                             ->join('Lists', 'Profiles.id = Lists.owner')
                             ->where(['Profiles.id' => $num])
                             ->get()                     
                             ->getResult();
 
-        $user->compilations = [];
-        $user->compilationsDefault = [];
+        $user->comps = [];
+        $user->compsDefault = [];
 
-        for ($i = 0; $i < count($compilations); $i++) {
-            if ($compilations[$i]->default == 't') {
-                array_push($user->compilationsDefault, $compilations[$i]);
+        for ($i = 0; $i < count($comps); $i++) {
+            if ($comps[$i]->default == 't') {
+                array_push($user->compsDefault, $comps[$i]);
             } else {
-                array_push($user->compilations, $compilations[$i]);
+                array_push($user->comps, $comps[$i]);
             }
         }
 

@@ -39,6 +39,8 @@ class LoginController extends BaseController
             'username' => $data->username,
             'email' => $data->email,
             'image' => $data->image,
+            'comps' => $data->comps,
+            'compsDefault' => $data->compsDefault,
             'isLoggedIn' => TRUE
         ];
         $session->set($ses_data);

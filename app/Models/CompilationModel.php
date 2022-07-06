@@ -12,6 +12,11 @@ class CompilationModel
         $this->builder = $dataBase->table('Lists');
     }
 
+    function create($data)
+    {
+        $this->builder->insert($data);
+    }
+
     function postDefaults($id)
     {
         $data = [

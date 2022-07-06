@@ -550,7 +550,8 @@ body.watch h1.heading {
     color: #352632;
     padding: 10px 20px;
     border: 2px solid #352632;
-    border-radius: 25px;    
+    border-radius: 25px;
+    cursor: pointer;
 }
 
 .information .scol {
@@ -906,6 +907,12 @@ body.user .header .user_name {
     background: #352632;
 }
 
+.user_comps .comps_menu .item.create-comp {
+    color: #FAA4BD;
+    border-color: #FAA4BD;
+    cursor: pointer;
+}
+
 .user_comps .divider {
     min-width: 6px;
     background: #FAA4BD;
@@ -942,4 +949,12 @@ body.user .footer .divider {
 body.user .empty {
     height: 100px;
     padding-top: 20px;
+}
+
+
+
+
+
+.disabled {
+    display: none;
 }

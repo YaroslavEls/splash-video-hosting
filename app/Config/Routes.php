@@ -51,6 +51,8 @@ $routes->get('/registration', 'RegistrationController');
 $routes->post('/registration', 'RegistrationController::auth');
 
 $routes->get('/user/(:num)', 'UserController::index/$1');
+$routes->post('/create', 'UserController::create');
+$routes->post('/add', 'UserController::add');
 
 
 /*
