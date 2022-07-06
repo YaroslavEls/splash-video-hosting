@@ -460,7 +460,7 @@ h1.heading span {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width: 866px;
     padding: 20px 20px 10px;
     background: rgba(217, 217, 217, 0.4);
 }
@@ -792,143 +792,154 @@ body.watch .footer {
 
 /* USER PAGE */
 
-    body.user .header {
-        background: 0;
-        border: 0;
-        margin-left: 30px;
-    }
+body.user .header {
+    background: 0;
+    border: 0;
+    margin-left: 30px;
+}
 
-    body.user h1 {
-        width: fit-content;
-        margin: 0 0 36px 0;
-    }
+body.user h1 {
+    width: fit-content;
+    margin: 0 0 36px 0;
+}
 
-    body.user .wrapper {
-        align-items: center;
-    }
+body.user .wrapper {
+    align-items: center;
+}
 
-    body.user .header .user_photo, body.user .header .registration, body.user .header .login {
-        top: 0;
-    }
+body.user .header .user_photo, body.user .header .registration, body.user .header .login {
+    top: 0;
+}
 
-    body.user .header .user_name {
-        top: 115px;
-    }
+body.user .header .user_name {
+    top: 115px;
+}
 
-    .header .wrapper img {
-        width: 209px;
-        height: 209px;
-        object-fit: cover;
-        background-color: #fff;
-        margin-right: 20px;
-        border-radius: 50%; 
-    }
+.header .wrapper img {
+    width: 209px;
+    height: 209px;
+    object-fit: cover;
+    background-color: #fff;
+    margin-right: 20px;
+    border-radius: 50%; 
+}
 
-    .header .wrapper .name {
-        font-weight: 300;
-        font-size: 30px;
-        line-height: 33px;
-        letter-spacing: 0.1em;
-        color: #FFFFFF;
-        margin-bottom: 20px;
-    }
+.header .wrapper .name {
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 33px;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
 
-    .header .wrapper .rank {
-        display: inline-block;
-        background: #FFFFFF;
-        padding: 5px 18px;
-        border-radius: 25px 25px 25px 0px;
-        font-weight: 300;
-        font-size: 20px;
-        line-height: 22px;
-        letter-spacing: 0.1em;
-        color: #352632;
-    }
+.header .wrapper .rank {
+    display: inline-block;
+    background: #FFFFFF;
+    padding: 5px 18px;
+    border-radius: 25px 25px 25px 0px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #352632;
+}
 
 
-    .pinned {
-        padding: 0 30px 24px;
-        border-bottom: 12px solid #FAA4BD;
+.pinned {
+    padding: 0 30px 24px;
+    border-bottom: 12px solid #FAA4BD;
 
-    }
+}
 
-    .pinned .heading {
-        margin-left: 370px;
-        margin-bottom: 15px;
-    }
+.pinned .heading {
+    margin-left: 370px;
+    margin-bottom: 15px;
+}
 
-    .user_comps {
-        display: flex;
-    }
+.user_comps {
+    display: flex;
+}
 
-    .user_comps .comps_menu {
-        min-width: 370px;
-        padding: 30px 35px 35px;
-    }
+.user_comps .comps_menu {
+    min-width: 390px;
+    padding: 30px 35px 35px;
+}
 
-    .user_comps .comps_menu .item {
-        display: block;
-        text-decoration: none;
-        width: fit-content;
-        font-weight: 300;
-        font-size: 25px;
-        line-height: 28px;
-        letter-spacing: 0.1em;
-        color: #000000;
-        padding: 8px 18px;
-        border: 2px solid #352632;
-        border-radius: 25px;
-        margin-bottom: 30px;
-    }
+.user_comps .comps_menu .divider {
+    background: #fff;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
 
-    .user_comps .comps_menu .item.active {
-        position: relative;
-        background: #352632;
-        border: 2px solid #F7F2F4;
-        color: #F7F2F4;
-    }
+.user_comps .comps_menu .item {
+    display: block;
+    text-decoration: none;
+    width: fit-content;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 28px;
+    letter-spacing: 0.1em;
+    color: #000000;
+    padding: 8px 18px;
+    border: 2px solid #352632;
+    border-radius: 25px;
+    margin-bottom: 30px;
+}
 
-    .user_comps .comps_menu .item.active::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -15px;
-        display: block;
-        width: 4px;
-        height: 100%;
-        border-radius: 50px;
-        background: #352632;
-    }
+.user_comps .comps_menu .item.active {
+    position: relative;
+    background: #352632;
+    border: 2px solid #F7F2F4;
+    color: #F7F2F4;
+}
 
-    .user_comps .divider {
-        min-width: 6px;
-        background: #FAA4BD;
-    }
+.user_comps .comps_menu .item.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -15px;
+    display: block;
+    width: 4px;
+    height: 100%;
+    border-radius: 50px;
+    background: #352632;
+}
 
-    .user_comps .comps_content {
-        margin: 14px 20px 91px;
-        width: 100%;
-    }
+.user_comps .divider {
+    min-width: 6px;
+    background: #FAA4BD;
+}
 
-    body.user .footer .divider {
-        width: 6px;
-        height: 100%;
-        background: #FAA4BD;
-        margin-left: 370px;
-        position: relative;
-        top: -60px;
-    }
+.user_comps .comps_content {
+    margin: 14px 20px 91px;
+    width: 100%;
+}
 
-    .user_comps .comps_content .comp_list .item:last-child {
-        height: 127px;
-        padding-bottom: 25px;
-        border-bottom: 2px solid rgba(78, 78, 78, 0.5);
-    }
+body.user .footer .divider {
+    width: 6px;
+    height: 100%;
+    background: #FAA4BD;
+    margin-left: 390px;
+    position: relative;
+    top: -60px;
+}
 
-    .user_comps .comps_content .comp_list .wrapper {
-        max-height: unset;
-    }
+.user_comps .comps_content .comp_list .item:last-child {
+    height: 127px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid rgba(78, 78, 78, 0.5);
+}
 
-    .user_comps .comps_content .comp_list .divider {
-        display: none;
-    }
+.user_comps .comps_content .comp_list .wrapper {
+    max-height: unset;
+}
+
+.user_comps .comps_content .comp_list .divider {
+    display: none;
+}
+
+body.user .empty {
+    height: 100px;
+    padding-top: 20px;
+}

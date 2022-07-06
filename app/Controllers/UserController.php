@@ -20,7 +20,7 @@ class UserController extends BaseController
 
         $listId = $this->request->getVar('list');
         if (!$listId) {
-            $listId = $user->compilations[0]->id;
+            $listId = $user->compilationsDefault[0]->id;
         }
         $model = new CompilationModel($db);
         $favourite = $model->getFavouriteByUser($user->id);

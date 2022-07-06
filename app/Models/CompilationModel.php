@@ -12,6 +12,31 @@ class CompilationModel
         $this->builder = $dataBase->table('Lists');
     }
 
+    function postDefaults($id)
+    {
+        $data = [
+            [
+                'name'    => 'Просмотрено',
+                'owner'   => $id,
+                'public'  => true,
+                'default' => true
+            ],
+            [
+                'name'    => 'Любимое',
+                'owner'   => $id,
+                'public'  => true,
+                'default' => true
+            ],
+            [
+                'name'    => 'Буду смотреть',
+                'owner'   => $id,
+                'public'  => true,
+                'default' => true
+            ]
+        ];
+        $this->builder->insertBatch($data);
+    }
+
     function getAll()
     {
         return $this->builder

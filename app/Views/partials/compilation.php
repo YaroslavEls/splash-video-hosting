@@ -1,5 +1,8 @@
 <div class="comp_list">
     <a href="/compilations/<?= $item->id ?>" class="heading small"><?= $item->name ?></a>
+    <?php if ($item->titles == []) : ?>
+        <div class="empty">Пусто :(</div>
+    <?php endif; ?>
     <div class="wrapper">
         <?php for($i = 0; $i < count($item->titles); $i++) : ?>   
             <a href="/watch/<?= $item->titles[$i]->name ?>" class="item">

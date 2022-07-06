@@ -12,6 +12,11 @@ class UserModel
         $this->builder = $dataBase->table('Profiles');
     }
 
+    function postUser($data)
+    {
+        $this->builder->insert($data);
+    }
+
     function getUserByEmail($str)
     {
         return $this->builder
@@ -26,6 +31,10 @@ class UserModel
                     ->where(['Profiles.id' => $num])
                     ->get()                     
                     ->getRow();
+        
+        if (!$user) {
+            return;
+        }
 
         $compilations = $this->builder
                             ->select('Lists.*')
@@ -34,7 +43,17 @@ class UserModel
                             ->get()                     
                             ->getResult();
 
-        $user->compilations = $compilations;
+        $user->compilations = [];
+        $user->compilationsDefault = [];
+
+        for ($i = 0; $i < count($compilations); $i++) {
+            if ($compilations[$i]->default == 't') {
+                array_push($user->compilationsDefault, $compilations[$i]);
+            } else {
+                array_push($user->compilations, $compilations[$i]);
+            }
+        }
+
         return $user;
     }
 }
