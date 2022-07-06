@@ -22,12 +22,14 @@ class CompilationModel
     function countAll()
     {
         return $this->builder
+                    ->where(['public' => true, 'default' => false])
                     ->countAllResults();
     }
 
     function getAllWithTitles($perPage, $page)
     {
         $lists = $this->builder
+                        ->where(['public' => true, 'default' => false])
                         ->limit($perPage, ($page-1)*$perPage)
                         ->get()
                         ->getResult();
@@ -56,6 +58,37 @@ class CompilationModel
         }
 
         return $lists;
+    }
+
+    function getAllById($id)
+    {
+        $compilation = $this->builder
+                            ->select('id, name')
+                            ->where(['id' => $id])
+                            ->get()                     
+                            ->getRow();
+
+        $titles = $this->builder
+                    ->select('Titles.*')
+                    ->join('TitlesLists', 'Lists.id = TitlesLists.list_id')
+                    ->join('Titles', 'Titles.id = TitlesLists.title_id')
+                    ->where(['TitlesLists.list_id =' => $id])
+                    ->get()                     
+                    ->getResult();
+
+        $compilation->titles = $titles;
+        return $compilation;
+    }
+
+    function getFavouriteByUser($id)
+    {
+        return $this->builder
+                    ->select('Titles.*')
+                    ->join('TitlesLists', 'Lists.id = TitlesLists.list_id')
+                    ->join('Titles', 'Titles.id = TitlesLists.title_id')
+                    ->where(['Lists.owner' => $id, 'Lists.name' => 'Любимое'])
+                    ->get()                     
+                    ->getResult();
     }
 
     function getById($id, $perPage, $page)

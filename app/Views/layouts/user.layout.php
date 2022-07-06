@@ -15,8 +15,10 @@
     <div class="bg_wrap" style="background-image: url('<?= base_url('assets/svg/bg_profile.svg'); ?>');">
         <?= $this->include('partials/header-user'); ?>
         <?= $this->renderSection('content'); ?>
-        <?= $this->include('partials/footer'); ?>
+        <?= $this->include('partials/footer-main'); ?>
     </div>
+
+    <script src="<?= base_url('assets/js/script.js'); ?>"></script>
 </body>
 <style>
     @font-face {

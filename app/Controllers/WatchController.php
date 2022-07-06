@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\TitleModel;
-use App\Models\EpisodeModel;
+// use App\Models\EpisodeModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class WatchController extends BaseController
@@ -24,27 +24,27 @@ class WatchController extends BaseController
 
     public function episode($arg1, $arg2)
     {
-        $db = db_connect();
-        $model = new TitleModel($db);
-        $data = $model->getByName($arg1);
+        // $db = db_connect();
+        // $model = new TitleModel($db);
+        // $data = $model->getByName($arg1);
 
-        if (!$data) {
-            throw new PageNotFoundException('no such title');
-        }
+        // if (!$data) {
+        //     throw new PageNotFoundException('no such title');
+        // }
 
-        $info = new \stdClass;
-        $info->title = $data;
+        // $info = new \stdClass;
+        // $info->title = $data;
 
-        $model = new EpisodeModel($db);
-        $data = $model->getOne($data->id, $arg2);
+        // $model = new EpisodeModel($db);
+        // $data = $model->getOne($data->id, $arg2);
 
-        if (!$data) {
-            throw new PageNotFoundException('no such episode');
-        }
+        // if (!$data) {
+        //     throw new PageNotFoundException('no such episode');
+        // }
 
-        $data->number = $arg2;
-        $info->episode = $data;
+        // $data->number = $arg2;
+        // $info->episode = $data;
 
-        return view('pages/episode.php', ['data' => $info]);
+        // return view('pages/episode.php', ['data' => $info]);
     }
 }

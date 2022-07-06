@@ -3,21 +3,29 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\CompilationModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class UserController extends BaseController
 {
     public function index($arg)
     {
-        $model = new UserModel();
-        $profile = $model->find($arg);
+        $db = db_connect();
+        $model = new UserModel($db);
+        $user = $model->getUserById($arg);
 
-        if ($profile) {
-            $data = ['id' => $profile['username']];
-        } else {
+        if (!$user) {
             throw new PageNotFoundException('No such user found');
         }
 
-        return view('pages/user.php', $data);
+        $listId = $this->request->getVar('list');
+        if (!$listId) {
+            $listId = $user->compilations[0]->id;
+        }
+        $model = new CompilationModel($db);
+        $favourite = $model->getFavouriteByUser($user->id);
+        $list = $model->getAllById($listId);
+
+        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'list' => $list]);
     }
 }

@@ -5,22 +5,18 @@
 
 <div class="pinned">
     <div class="heading small">Любимое:</div>
-    <div class="list">
-        <?php for($i = 0; $i < 5; $i++) : ?>
-            <?= view('partials/title-item', ['num' => $i]) ?>
-        <?php endfor ?>
-    </div>
+    <?= view('partials/slider', ['data' => $favourite]); ?>
 </div>
 
 <div class="user_comps">
     <div class="comps_menu">
-        <?php for($i = 0; $i < 6; $i++) : ?>
-            <div class="item">Compilation</div>
+        <?php for($i = 0; $i < count($user->compilations); $i++) : ?>
+            <a href="/user/<?= $user->id ?>?list=<?= $user->compilations[$i]->id ?>" class="item <?= $list->id == $user->compilations[$i]->id ? 'active' : '' ?>"><?= $user->compilations[$i]->name ?></a>
         <?php endfor ?>
     </div>
     <div class="divider"></div>
     <div class="comps_content">
-        <?= view('partials/compilation') ?>
+        <?= view('partials/compilation', ['item' => $list]) ?>
     </div>
 </div>
 
