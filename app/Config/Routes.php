@@ -52,6 +52,7 @@ $routes->post('/registration', 'RegistrationController::auth');
 $routes->get('/exit', 'LoginController::exit');
 
 $routes->get('/user/(:num)', 'UserController::index/$1');
+$routes->get('/user/(:num)/friends', 'UserController::friends/$1');
 $routes->post('/create', 'UserController::create');
 $routes->post('/add', 'UserController::add');
 

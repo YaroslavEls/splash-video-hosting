@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\FriendsModel;
 use App\Models\CompilationModel;
 use App\Models\TitlesCompsModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
@@ -26,8 +27,28 @@ class UserController extends BaseController
         $model = new CompilationModel($db);
         $favourite = $model->getFavouriteByUser($user->id);
         $list = $model->getAllById($listId);
+        $active = $list->id;
 
-        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'list' => $list]);
+        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'list' => $list, 'active' => $active]);
+    }
+
+    public function friends($arg)
+    {
+        $db = db_connect();
+        $model = new UserModel($db);
+        $user = $model->getUserById($arg);
+
+        if (!$user) {
+            throw new PageNotFoundException('No such user found');
+        }
+
+        $model = new CompilationModel($db);
+        $favourite = $model->getFavouriteByUser($user->id);
+        $model = new FriendsModel($db);
+        $friends = $model->getUsersFriends($user->id);
+        $active = 'friends';
+
+        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'friends' => $friends, 'active' => $active]);
     }
 
     public function create()

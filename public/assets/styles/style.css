@@ -961,6 +961,56 @@ body.user .empty {
 }
 
 
+/* FRIENDS */
+
+.friends a {
+    display: block;
+    text-decoration: none;
+}
+
+.friends .item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    background: rgba(217, 217, 217, 0.4);
+    box-shadow: 0px 4px 10px 7px rgba(0, 0, 0, 0.25);
+    margin-bottom: 26px;
+}
+
+.friends .item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 10px;
+}
+
+.friends .item .name {
+    font-family: 'Anime Ace v3';
+    font-weight: 300;
+    font-size: 35px;
+    line-height: 39px;
+    letter-spacing: 0.1em;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.friends .item .status {
+    font-family: 'Anime Ace v3';
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #352632;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 25px 25px 25px 0px;
+    display: inline-block;
+    padding: 2px 12px;
+}
+
 
 
 
