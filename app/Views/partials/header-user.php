@@ -1,7 +1,12 @@
 <div class="header">
     <?php if (session()->get('isLoggedIn')): ?>
-        <a href="/user/<?= session()->get('id') ?>" class="user_photo"><img src="<?= base_url('images/user/'.session()->get('image')) ?>" alt="<?= session()->get('username') ?>"></a>
-        <a href="/user/<?= session()->get('id') ?>" class="user_name"><?= session()->get('username') ?></a>
+        <?php if (session()->get('id') == $user->id): ?>
+            <a href="/" class="settings">Настройки</a>
+            <a href="/exit" class="exit">Выйти</a>
+        <?php else : ?>
+            <a href="/user/<?= session()->get('id') ?>" class="user_photo"><img src="<?= base_url('images/user/'.session()->get('image')) ?>" alt="<?= session()->get('username') ?>"></a>
+            <a href="/user/<?= session()->get('id') ?>" class="user_name"><?= session()->get('username') ?></a>
+        <?php endif; ?>
     <?php else: ?>
         <a href="/registration" class="registration">Регистрация</a>
         <a href="/login" class="login">Войти</a>

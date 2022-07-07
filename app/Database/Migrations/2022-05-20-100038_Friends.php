@@ -19,6 +19,9 @@ class Friends extends Migration
                 'constraint'     => 8,
                 'unsigned'       => true,
             ],
+            'pending'         => [
+                'type'          => 'bool',
+            ],
         ]);
         
         $this->forge->addForeignKey('profile1_id', 'Profiles', 'id');

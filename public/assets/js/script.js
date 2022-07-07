@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.getElementById('search');
     const createForm = document.getElementById('create');
     const add = document.querySelector('.add');
+    const addMenu = document.querySelector('.add-menu');
+    const addForm = document.getElementById('add');
 
     // scroll arrow button
     if (arrow) {
@@ -32,10 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // add menu
-    if (add) {
-        const addMenu = document.querySelector('.add-menu');
-        const addForm = document.getElementById('add');
-
+    if (addMenu) {
         add.addEventListener('click', () => {
             addMenu.classList.toggle('disabled');
         });

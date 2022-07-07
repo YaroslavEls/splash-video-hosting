@@ -91,7 +91,7 @@ h1.heading span {
     border-bottom: 12px solid #FFFFFF;
 }
 
-.header .registration, .header .login {
+.header .registration, .header .login, .header .settings, .header .exit {
     display: block;
     text-decoration: none;
     color: #000;
@@ -103,12 +103,16 @@ h1.heading span {
     border-radius: 15px;
 }
 
-.header .registration {
+.header .registration, .header .settings {
     right: 140px;
 }
 
-.header .login {
+.header .login, .header .exit {
     right: 10px;
+}
+
+.header .settings, .header .exit {
+    top: 0;
 }
 
 .header .user_photo {
@@ -345,6 +349,7 @@ h1.heading span {
     display: block;
     text-decoration: none;
     max-width: 210px;
+    width: 100%;
     margin-right: 48px;
 }
 
@@ -460,7 +465,7 @@ h1.heading span {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 866px;
+    width: 100%;
     padding: 20px 20px 10px;
     background: rgba(217, 217, 217, 0.4);
 }
@@ -543,7 +548,7 @@ body.watch h1.heading {
 .information .fcol .add {
     display: block;
     width: fit-content;
-    margin: 0 auto;
+    margin: 0 auto 25px;
     font-weight: 300;
     font-size: 28px;
     line-height: 31px;
@@ -919,7 +924,7 @@ body.user .header .user_name {
 }
 
 .user_comps .comps_content {
-    margin: 14px 20px 91px;
+    padding: 14px 20px 91px;
     width: 100%;
 }
 
@@ -944,6 +949,10 @@ body.user .footer .divider {
 
 .user_comps .comps_content .comp_list .divider {
     display: none;
+}
+
+.user_comps .comps_content .comp_list .item .info .title {
+    max-width: 826px;
 }
 
 body.user .empty {

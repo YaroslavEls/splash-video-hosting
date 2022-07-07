@@ -49,6 +49,7 @@ $routes->get('/login', 'LoginController');
 $routes->post('/login', 'LoginController::auth');
 $routes->get('/registration', 'RegistrationController');
 $routes->post('/registration', 'RegistrationController::auth');
+$routes->get('/exit', 'LoginController::exit');
 
 $routes->get('/user/(:num)', 'UserController::index/$1');
 $routes->post('/create', 'UserController::create');
