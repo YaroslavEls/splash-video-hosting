@@ -41,6 +41,7 @@ class LoginController extends BaseController
             'image' => $data->image,
             'comps' => $data->comps,
             'compsDefault' => $data->compsDefault,
+            'friends' => $data->friends,
             'isLoggedIn' => TRUE
         ];
         $session->set($ses_data);

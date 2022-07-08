@@ -82,6 +82,12 @@ h1.heading span {
     margin-bottom: 20px;
 }
 
+.heading.xsmall {
+    font-size: 25px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+
 
 /* HEADER */
 
@@ -201,6 +207,25 @@ h1.heading span {
     right: 20px;
     width: 30px;
     height: 30px;
+}
+
+.header .add-friend {
+    position: absolute;
+    right: 10px;
+    top: 183px;
+    display: block;
+    padding: 5px 18px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    width: fit-content;
+    font-family: 'Anime Ace v3';
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #352632;
+    text-decoration: none;
 }
 
 
@@ -978,9 +1003,37 @@ body.user .empty {
     margin-bottom: 26px;
 }
 
+.friends .item .buttons {
+    margin: 0 0 0 auto;
+}
+
+.friends .item .buttons .accept, .friends .item .buttons .decline {
+    font-family: 'Anime Ace v05';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    border: 2px solid #000;
+    border-radius: 25px;
+    padding: 5px 15px;
+    text-align: center;
+}
+
+.friends .item .buttons .accept {
+    color: green;
+    border-color: green;
+    margin-bottom: 10px;
+}
+
+.friends .item .buttons .decline {
+    color: red;
+    border-color: red;
+}
+
 .friends .item img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
     background-color: #fff;

@@ -28,12 +28,24 @@ class UserModel
             return;
         }
 
+        $friends = $this->builder
+                        ->select('Friends.profile2_id')
+                        ->join('Friends', 'Friends.profile1_id = Profiles.id')
+                        ->where(['Profiles.email' => $str])
+                        ->get()
+                        ->getResult();
+
+        $user->friends = [];
+        for ($i = 0; $i < count($friends); $i++) {
+            array_push($user->friends, $friends[$i]->profile2_id);
+        }
+
         $comps = $this->builder
-                            ->select('Lists.*')
-                            ->join('Lists', 'Profiles.id = Lists.owner')
-                            ->where(['Profiles.email' => $str])
-                            ->get()                     
-                            ->getResult();
+                    ->select('Lists.*')
+                    ->join('Lists', 'Profiles.id = Lists.owner')
+                    ->where(['Profiles.email' => $str])
+                    ->get()                     
+                    ->getResult();
 
         $user->comps = [];
         $user->compsDefault = [];

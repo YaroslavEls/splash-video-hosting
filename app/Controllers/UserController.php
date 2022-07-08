@@ -46,9 +46,97 @@ class UserController extends BaseController
         $favourite = $model->getFavouriteByUser($user->id);
         $model = new FriendsModel($db);
         $friends = $model->getUsersFriends($user->id);
+        if ($arg == session()->get('id')) {
+            $invites = $model->getUsersInvites($user->id);
+        } else {
+            $invites = [];
+        }
         $active = 'friends';
 
-        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'friends' => $friends, 'active' => $active]);
+        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'friends' => $friends, 'invites' => $invites, 'active' => $active]);
+    }
+
+    public function invite($arg)
+    {
+        $db = db_connect();
+        $model = new FriendsModel($db);
+        
+        $data = [
+            'profile1_id' => session()->get('id'),
+            'profile2_id' => $arg
+        ];
+
+        $model->addPendingInvite($data);
+
+        return redirect()->to('/user/'.session()->get('id').'/friends');
+    }
+
+    public function cancel($arg)
+    {
+        $db = db_connect();
+        $model = new FriendsModel($db);
+        
+        $data = [
+            'profile1_id' => session()->get('id'),
+            'profile2_id' => $arg
+        ];
+
+        $model->declineInvite($data);
+
+        return redirect()->to('/user/'.session()->get('id').'/friends');
+    }
+
+    public function accept($arg)
+    {
+        $db = db_connect();
+        $model = new FriendsModel($db);
+        
+        $data = [
+            'profile1_id' => $arg,
+            'profile2_id' => session()->get('id'),
+        ];
+
+        $model->acceptInvite($data);
+
+        session()->push('friends', [$arg]);
+
+        return redirect()->to('/user/'.session()->get('id').'/friends');
+    }
+
+    public function decline($arg)
+    {
+        $db = db_connect();
+        $model = new FriendsModel($db);
+        
+        $data = [
+            'profile1_id' => $arg,
+            'profile2_id' => session()->get('id')
+        ];
+
+        $model->declineInvite($data);
+
+        return redirect()->to('/user/'.session()->get('id').'/friends');
+    }
+
+    public function remove($arg)
+    {
+        $db = db_connect();
+        $model = new FriendsModel($db);
+        
+        $data = [
+            'profile1_id' => $arg,
+            'profile2_id' => session()->get('id')
+        ];
+
+        $model->deleteFriend($data);
+
+        $tmp = session()->get('friends');
+        unset($tmp[array_search($arg, $tmp)]);
+        $tmp = array_values($tmp);
+        session()->remove('friends');
+        session()->set(['friends' => $tmp]);
+
+        return redirect()->to('/user/'.$arg);
     }
 
     public function create()

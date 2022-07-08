@@ -32,7 +32,7 @@
         <?php if (isset($list)) : ?>
             <?= view('partials/compilation', ['item' => $list]); ?>
         <?php else : ?>
-            <?= view('partials/friends', ['friend' => $friends]); ?>
+            <?= view('partials/friends', ['data' => $friends, 'invites' => $invites]); ?>
         <?php endif; ?>
     </div>
 </div>
