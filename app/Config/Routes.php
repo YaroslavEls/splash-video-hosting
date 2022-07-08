@@ -43,6 +43,7 @@ $routes->get('/search/(:any)', 'FilterController::searchTitle/$1');
 $routes->get('/compilations/search/(:any)', 'FilterController::searchCompilation/$1');
 
 $routes->get('/watch/(:segment)', 'WatchController::index/$1');
+$routes->post('/watch/(:segment)', 'WatchController::comment/$1');
 $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
 
 $routes->get('/login', 'LoginController');

@@ -59,6 +59,6 @@
 </div>
 <div class="divider"></div>
 
-<?= view('partials/comments'); ?>
+<?= view('partials/comments', ['comments' => $comments]); ?>
 
 <?= $this->endSection(); ?>

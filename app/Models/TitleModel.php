@@ -123,4 +123,13 @@ class TitleModel
                     ->get()                     
                     ->getResult();
     }
+
+    function getIdByName($name)
+    {
+        return $this->builder
+                    ->select('id')
+                    ->where(['Titles.name =' => $name])
+                    ->get()                     
+                    ->getRow();
+    }
 }

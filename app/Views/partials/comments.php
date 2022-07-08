@@ -1,22 +1,21 @@
-<div class="comments">
-    <div class="name">Коментарии:</div>
-    <form action="" class="comment">
-        <input type="text">
+<div class="comments" id="comments">
+    <div class="name">Коментарии (<?= $count ?>):</div>
+    <form action="<?= current_url() ?>" method="post" class="comment">
+        <textarea name="text" placeholder="Комментарий..." required></textarea>
         <button>Отправить Коментарий</button>
     </form>
 
-    <?php for($i = 0; $i < 5; $i++) : ?>
+    <?php for($i = 0; $i < count($comments); $i++) : ?>
         <div class="item">
-            <div class="user">
-                <div class="image"></div>
+            <a href="/user/<?= $comments[$i]->id ?>" class="user">
+                <img src="<?= base_url() ?>/images/user/<?= $comments[$i]->image ?>" alt="<?= $comments[$i]->username ?>">
                 <div>
-                    <div class="username">SeventhSenpai</div>
-                    <div class="status">Status</div>
+                    <div class="username"><?= $comments[$i]->username ?></div>
+                    <div class="status">???</div>
                 </div>
-            </div>
-            <div class="text">
-                Честно скажу. Скотилось качество (и количество стычек). И это я говорю потому что, я смотрел прошлые сезоны от Анидаб, и эти сезоны просто невозможно крутые! Я сейчас я посмотрел от дома каст и эмоции после просмотра (по сравнению с прошлыи) 7/10. Но если кому-то не понравились мои мысли простите( ещё чтобы понять то что я сказал, прошу к просмотру прошлых сезонов, от озвучьки Анидаб.
-            </div>
+            </a>
+            <div class="date"><?= mb_substr($comments[$i]->created_at, 0, 16) ?></div>
+            <div class="text"><?= $comments[$i]->text ?></div>
         </div>
     <?php endfor; ?>
 
