@@ -12,40 +12,32 @@ class UserModel
         $this->builder = $dataBase->table('Profiles');
     }
 
-    function postUser($data)
-    {
-        $this->builder->insert($data);
-    }
+    // getting data
 
-    function getUserByEmail($str)
+    function getByEmail($str)
     {
         $user = $this->builder
-                    ->where(['email' => $str])
-                    ->get()                     
-                    ->getRow();
+            ->where(['email' => $str])
+            ->get()                     
+            ->getRow();
         
-        if (!$user) {
-            return;
-        }
+        if (!$user) return;
 
         $friends = $this->builder
-                        ->select('Friends.profile2_id')
-                        ->join('Friends', 'Friends.profile1_id = Profiles.id')
-                        ->where(['Profiles.email' => $str])
-                        ->get()
-                        ->getResult();
+            ->select('Friends.profile2_id')
+            ->join('Friends', 'Friends.profile1_id = Profiles.id')
+            ->where(['Profiles.email' => $str])
+            ->get()
+            ->getResult();
 
-        $user->friends = [];
-        for ($i = 0; $i < count($friends); $i++) {
-            array_push($user->friends, $friends[$i]->profile2_id);
-        }
+        $user->friends = array_column($friends, 'profile2_id');
 
         $comps = $this->builder
-                    ->select('Lists.*')
-                    ->join('Lists', 'Profiles.id = Lists.owner')
-                    ->where(['Profiles.email' => $str])
-                    ->get()                     
-                    ->getResult();
+            ->select('Lists.*')
+            ->join('Lists', 'Profiles.id = Lists.owner')
+            ->where(['Profiles.email' => $str])
+            ->get()                     
+            ->getResult();
 
         $user->comps = [];
         $user->compsDefault = [];
@@ -61,23 +53,21 @@ class UserModel
         return $user;
     }
 
-    function getUserById($num)
+    function getById($num)
     {
         $user = $this->builder
-                    ->where(['Profiles.id' => $num])
-                    ->get()                     
-                    ->getRow();
+            ->where(['Profiles.id' => $num])
+            ->get()                     
+            ->getRow();
         
-        if (!$user) {
-            return;
-        }
+        if (!$user) return;
 
         $comps = $this->builder
-                            ->select('Lists.*')
-                            ->join('Lists', 'Profiles.id = Lists.owner')
-                            ->where(['Profiles.id' => $num])
-                            ->get()                     
-                            ->getResult();
+            ->select('Lists.*')
+            ->join('Lists', 'Profiles.id = Lists.owner')
+            ->where(['Profiles.id' => $num])
+            ->get()                     
+            ->getResult();
 
         $user->comps = [];
         $user->compsDefault = [];
@@ -91,5 +81,12 @@ class UserModel
         }
 
         return $user;
+    }
+
+    // posting data
+
+    function postOne($data)
+    {
+        $this->builder->insert($data);
     }
 }

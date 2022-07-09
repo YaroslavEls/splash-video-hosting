@@ -30,7 +30,7 @@
             <span>Жанры:</span>
             <div>
                 <?php for($i = 0; $i < count($data->genres); $i++) : ?>
-                    <a href="/genre/<?= $data->genres[$i] ?>"><?= $data->genres[$i].(isset($data->genres[$i+1]) ? ',' : '') ?></a>
+                    <a href="/filters/<?= $data->genres[$i] ?>"><?= $data->genres[$i].(isset($data->genres[$i+1]) ? ',' : '') ?></a>
                 <?php endfor; ?>
             </div>
         </div>

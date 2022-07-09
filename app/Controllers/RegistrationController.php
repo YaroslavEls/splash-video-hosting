@@ -10,7 +10,7 @@ class RegistrationController extends BaseController
     public function index()
     {
         session()->destroy();
-        echo view('pages/registration');
+        return view('pages/registration');
     } 
   
     public function auth()
@@ -35,7 +35,7 @@ class RegistrationController extends BaseController
             'password' => $this->request->getVar('password'),
             'image'    => 'default.jpg'
         ];
-        $userModel->postUser($data);
+        $userModel->postOne($data);
 
         $compilationModel = new CompilationModel($db);
         $compilationModel->postDefaults($db->insertID());

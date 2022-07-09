@@ -12,119 +12,82 @@ class TitleModel
         $this->builder = $dataBase->table('Titles');
     }
 
-    function getAll()
-    {
-        return $this->builder
-                    ->get()                     
-                    ->getResult();
-    }
+    // getting data
 
-    function getAllPerPage($perPage, $page) 
+    function getAll($perPage = 0, $page = 0) 
     {
         return $this->builder
-                    ->limit($perPage, ($page-1)*$perPage)
-                    ->get()                     
-                    ->getResult();
+            ->limit($perPage, ($page-1)*$perPage)
+            ->get()                     
+            ->getResult();
     }
 
     function countAll()
     {
         return $this->builder
-                    ->countAllResults();
+            ->countAllResults();
     }
 
-    function getSome($amount)
+    function getLike($str, $perPage = 0, $page = 0)
     {
         return $this->builder
-                    ->where(['id <=' => $amount])
-                    ->get()                     
-                    ->getResult();
+            ->like(['name' => $str], '', 'both', null, true)
+            ->limit($perPage, ($page-1)*$perPage)
+            ->get()                     
+            ->getResult();
     }
 
-    function getLike($str)
+    function countLike($str)
     {
         return $this->builder
-                    ->like(['name' => $str], '', 'both', null, true)
-                    ->get()                     
-                    ->getResult();
+            ->like(['name' => $str])
+            ->countAllResults();
     }
 
-    function getLikePerPage($str, $perPage, $page)
+    function getByTag($id, $perPage = 0, $page = 0) 
     {
         return $this->builder
-                    ->like(['name' => $str], '', 'both', null, true)
-                    ->limit($perPage, ($page-1)*$perPage)
-                    ->get()                     
-                    ->getResult();
+            ->select('Titles.*')
+            ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+            ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+            ->where(['Tags.id =' => $id])
+            ->limit($perPage, ($page-1)*$perPage)
+            ->get()                     
+            ->getResult();
     }
 
-    function countTitlesLike($str)
+    function countByTag($id)
     {
         return $this->builder
-                    ->like(['name' => $str])
-                    ->countAllResults();
+            ->select('Titles.*')
+            ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+            ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+            ->where(['Tags.id =' => $id])
+            ->countAllResults();
     }
 
     function getByName($name)
     {
         $title = $this->builder
-                        ->where(['Titles.name =' => $name])
-                        ->get()                     
-                        ->getRow();
+            ->where(['Titles.name =' => $name])
+            ->get()                     
+            ->getRow();
 
-        if (!$title) {
-            return;
-        }
+        if (!$title) return;
 
         $genres = $this->builder
-                        ->select('Tags.name')
-                        ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
-                        ->join('Tags', 'TitlesTags.tag_id = Tags.id')
-                        ->where(['Titles.name =' => $name])
-                        ->get()                     
-                        ->getResultArray();
+            ->select('Tags.name')
+            ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+            ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+            ->where(['Titles.name =' => $name])
+            ->get()                     
+            ->getResultArray();
 
-        $title->genres = [];
-        for ($i = 0; $i < count($genres); $i++) {
-            $title->genres[$i] = $genres[$i]['name'];
-        }
-
+        $title->genres = array_column($genres, 'name');
         return $title;
     }
 
-    function countTitlesPerTag($id)
-    {
-        return $this->builder
-                    ->select('Titles.*')
-                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
-                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
-                    ->where(['Tags.id =' => $id])
-                    ->countAllResults();
-    }
-
-    function getByTag($id)
-    {
-        return $this->builder
-                    ->select('Titles.*')
-                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
-                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
-                    ->where(['Tags.id =' => $id])
-                    ->get()                     
-                    ->getResult();
-    }
-
-    function getByTagPerPage($id, $perPage, $page) {
-        return $this->builder
-                    ->select('Titles.*')
-                    ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
-                    ->join('Tags', 'TitlesTags.tag_id = Tags.id')
-                    ->where(['Tags.id =' => $id])
-                    ->limit($perPage, ($page-1)*$perPage)
-                    ->get()                     
-                    ->getResult();
-    }
-
-    function getIdByName($name)
+    function getIdByName($name)     // ???
     {
         return $this->builder
                     ->select('id')

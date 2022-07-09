@@ -34,17 +34,16 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'MainController');
 
 $routes->get('/compilations', 'CompilationController');
-$routes->get('/compilations/(:num)', 'CompilationController::list/$1');
+$routes->get('/compilations/search/(:any)', 'CompilationController::search/$1');
 
 $routes->get('/filters', 'FilterController::index');
-$routes->get('/genre/(:any)', 'FilterController::genre/$1');
-$routes->get('/tag/(:any)', 'FilterController::tag/$1');
-$routes->get('/search/(:any)', 'FilterController::searchTitle/$1');
-$routes->get('/compilations/search/(:any)', 'FilterController::searchCompilation/$1');
+$routes->get('/filters/(:any)', 'FilterController::tag/$1');
+$routes->get('/compilations/(:num)', 'FilterController::compilation/$1');
+$routes->get('/search/(:any)', 'FilterController::search/$1');
 
 $routes->get('/watch/(:segment)', 'WatchController::index/$1');
 $routes->post('/watch/(:segment)', 'WatchController::comment/$1');
-$routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
+// $routes->get('/watch/(:any)/episode/(:num)', 'WatchController::episode/$1/$2');
 
 $routes->get('/login', 'LoginController');
 $routes->post('/login', 'LoginController::auth');
@@ -54,13 +53,14 @@ $routes->get('/exit', 'LoginController::exit');
 
 $routes->get('/user/(:num)', 'UserController::index/$1');
 $routes->get('/user/(:num)/friends', 'UserController::friends/$1');
-    $routes->get('/user/(:num)/invite', 'UserController::invite/$1');
-    $routes->get('/user/(:num)/cancel', 'UserController::cancel/$1');
-    $routes->get('/user/(:num)/accept', 'UserController::accept/$1');
-    $routes->get('/user/(:num)/decline', 'UserController::decline/$1');
-    $routes->get('/user/(:num)/remove', 'UserController::remove/$1');
-$routes->post('/create', 'UserController::create');
-$routes->post('/add', 'UserController::add');
+    $routes->post('/create', 'UserController::create');
+    $routes->post('/add', 'UserController::add');
+
+$routes->get('/user/(:num)/invite', 'FriendController::invite/$1');
+$routes->get('/user/(:num)/cancel', 'FriendController::cancel/$1');
+$routes->get('/user/(:num)/accept', 'FriendController::accept/$1');
+$routes->get('/user/(:num)/decline', 'FriendController::decline/$1');
+$routes->get('/user/(:num)/remove', 'FriendController::remove/$1');
 
 
 /*

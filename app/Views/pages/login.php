@@ -1,5 +1,6 @@
 <?= $this->extend('layouts/auth.layout.php'); ?>
 
+
 <?= $this->section('content'); ?>
 
 <form action="/login" method="post" class="auth_form log_form">

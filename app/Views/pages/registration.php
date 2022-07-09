@@ -1,5 +1,6 @@
 <?= $this->extend('layouts/auth.layout.php'); ?>
 
+
 <?= $this->section('content'); ?>
 
 <form action="/registration" method="post" class="auth_form reg_form">

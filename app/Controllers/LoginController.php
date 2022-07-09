@@ -9,7 +9,7 @@ class LoginController extends BaseController
     public function index()
     {
         session()->destroy();
-        echo view('pages/login');
+        return view('pages/login');
     } 
   
     public function auth()
@@ -22,7 +22,7 @@ class LoginController extends BaseController
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
         
-        $data = $userModel->getUserByEmail($email);
+        $data = $userModel->getByEmail($email);
         
         if (!$data) {
             $session->setFlashdata('msg', 'Email does not exist.');

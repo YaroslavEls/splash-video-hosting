@@ -3,67 +3,49 @@
 namespace App\Controllers;
 
 use App\Models\CompilationModel;
-use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class CompilationController extends BaseController
 {
     public $current = [
-        'filter' => '',
+        'filter'  => '',
         'perPage' => 3,
         'pages' => 0
     ];
 
+    public $compModel;
+
     public function __construct()
     {
+        helper('pagination');
         $db = db_connect();
-        $model = new CompilationModel($db);
-        $count = $model->countAll();
-        
-        $this->current['pages'] = ceil($count/$this->current['perPage']);
+        $this->compModel = new CompilationModel($db);
     }
 
     public function index()
     {
-        $db = db_connect();
-        $model = new CompilationModel($db);
+        $page = $this->request->getVar('page') == 0 ? 1 : $this->request->getVar('page');
+        $count = $this->compModel->countAll();
+        $this->current = paginationSetup($this->current, 'main', $page, $count);
 
-        if ($this->current['filter'] != '') {
-            $this->current['filter'] = '';
-            $this->current['perPage'] = 3;
-            $count = $model->countAll();
-            $this->current['pages'] = ceil($count/$this->current['perPage']);
-        }
-
-        $page = $this->request->getVar('page');
-        $page = $page == 0 ? 1 : $page;
-        if ($page > $this->current['pages'] || $page < 0) {
-            throw new PageNotFoundException();
-        }
-
-        $data = $model->getAllWithTitles($this->current['perPage'], $page);
-        return view('pages/compilations.php', ['data' => $data, 'page' => $page, 'pages' => $this->current['pages']]);
+        $data = [
+            'data'  => $this->compModel->getAll($this->current['perPage'], $page),
+            'page'  => $page,
+            'pages' => $this->current['pages']
+        ];
+        return view('pages/compilations.php', $data);
     }
 
-    public function list($arg)
+    public function search($arg)
     {
-        $db = db_connect();
-        $model = new CompilationModel($db);
+        $page = $this->request->getVar('page') == 0 ? 1 : $this->request->getVar('page');
+        $count = $this->compModel->countLike($arg);
+        $this->current = paginationSetup($this->current, $arg, $page, $count);
 
-        if ($this->current['filter'] != $arg) {
-            $this->current['filter'] = $arg;
-            $this->current['perPage'] = 8;
-            $count = $model->countById($arg);
-            $this->current['pages'] = ceil($count/$this->current['perPage']);
-        }
-
-        $page = $this->request->getVar('page');
-        $page = $page == 0 ? 1 : $page;
-        if ($page > $this->current['pages'] || $page < 0) {
-            throw new PageNotFoundException();
-        }
-
-        $data = $model->getById($arg, $this->current['perPage'], $page);
-        $name = $model->getNameById($arg)->name;
-        return view('pages/listing.php', ['data' => $data, 'heading' => $name, 'page' => $page, 'pages' => $this->current['pages']]);
+        $data = [
+            'data'  => $this->compModel->getLike($arg, $this->current['perPage'], $page),
+            'page'  => $page,
+            'pages' => $this->current['pages']
+        ];
+        return view('pages/compilations.php', $data);
     }
 }

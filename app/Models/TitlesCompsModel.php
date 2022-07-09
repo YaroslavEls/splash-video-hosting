@@ -12,7 +12,9 @@ class TitlesCompsModel
         $this->builder = $dataBase->table('TitlesLists');
     }
 
-    function create($data)
+    // posting data
+
+    function postOne($data)
     {
         $this->builder->insert($data);
     }

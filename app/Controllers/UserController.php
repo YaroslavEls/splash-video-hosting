@@ -3,19 +3,27 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
-use App\Models\FriendsModel;
+use App\Models\FriendModel;
 use App\Models\CompilationModel;
 use App\Models\TitlesCompsModel;
 use \CodeIgniter\Exceptions\PageNotFoundException;
 
 class UserController extends BaseController
 {
-    public function index($arg)
+    public $userModel, $compModel, $friendModel;
+
+    public function __construct()
     {
         $db = db_connect();
-        $model = new UserModel($db);
-        $user = $model->getUserById($arg);
+        $this->userModel = new UserModel($db);
+        $this->compModel = new CompilationModel($db);
+        $this->friendModel = new FriendModel($db);
+        $this->tcModel = new TitlesCompsModel($db);
+    }
 
+    public function index($arg)
+    {
+        $user = $this->userModel->getById($arg);
         if (!$user) {
             throw new PageNotFoundException('No such user found');
         }
@@ -24,120 +32,34 @@ class UserController extends BaseController
         if (!$listId) {
             $listId = $user->compsDefault[0]->id;
         }
-        $model = new CompilationModel($db);
-        $favourite = $model->getFavouriteByUser($user->id);
-        $list = $model->getAllById($listId);
-        $active = $list->id;
 
-        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'list' => $list, 'active' => $active]);
+        $data = [
+            'user'      => $user,
+            'favourite' => $this->compModel->getOneByUser('Любимое', $user->id),
+            'list'      => $this->compModel->getById($listId),
+            'active'    => $listId
+        ];
+        return view('pages/user.php', $data);
     }
 
     public function friends($arg)
     {
-        $db = db_connect();
-        $model = new UserModel($db);
-        $user = $model->getUserById($arg);
-
+        $user = $this->userModel->getById($arg);
         if (!$user) {
             throw new PageNotFoundException('No such user found');
         }
 
-        $model = new CompilationModel($db);
-        $favourite = $model->getFavouriteByUser($user->id);
-        $model = new FriendsModel($db);
-        $friends = $model->getUsersFriends($user->id);
-        if ($arg == session()->get('id')) {
-            $invites = $model->getUsersInvites($user->id);
-        } else {
-            $invites = [];
-        }
-        $active = 'friends';
-
-        return view('pages/user.php', ['user' => $user, 'favourite' => $favourite, 'friends' => $friends, 'invites' => $invites, 'active' => $active]);
-    }
-
-    public function invite($arg)
-    {
-        $db = db_connect();
-        $model = new FriendsModel($db);
-        
         $data = [
-            'profile1_id' => session()->get('id'),
-            'profile2_id' => $arg
+            'user'      => $user,
+            'favourite' => $this->compModel->getOneByUser('Любимое', $user->id),
+            'friends'   => $this->friendModel->getFriendsByUser($user->id),
+            'invites'   => ($arg == session()->get('id')) ? $this->friendModel->getInvitesByUser($user->id) : [],
+            'active'    => 'friends'
         ];
-
-        $model->addPendingInvite($data);
-
-        return redirect()->to('/user/'.session()->get('id').'/friends');
+        return view('pages/user.php', $data);
     }
 
-    public function cancel($arg)
-    {
-        $db = db_connect();
-        $model = new FriendsModel($db);
-        
-        $data = [
-            'profile1_id' => session()->get('id'),
-            'profile2_id' => $arg
-        ];
-
-        $model->declineInvite($data);
-
-        return redirect()->to('/user/'.session()->get('id').'/friends');
-    }
-
-    public function accept($arg)
-    {
-        $db = db_connect();
-        $model = new FriendsModel($db);
-        
-        $data = [
-            'profile1_id' => $arg,
-            'profile2_id' => session()->get('id'),
-        ];
-
-        $model->acceptInvite($data);
-
-        session()->push('friends', [$arg]);
-
-        return redirect()->to('/user/'.session()->get('id').'/friends');
-    }
-
-    public function decline($arg)
-    {
-        $db = db_connect();
-        $model = new FriendsModel($db);
-        
-        $data = [
-            'profile1_id' => $arg,
-            'profile2_id' => session()->get('id')
-        ];
-
-        $model->declineInvite($data);
-
-        return redirect()->to('/user/'.session()->get('id').'/friends');
-    }
-
-    public function remove($arg)
-    {
-        $db = db_connect();
-        $model = new FriendsModel($db);
-        
-        $data = [
-            'profile1_id' => $arg,
-            'profile2_id' => session()->get('id')
-        ];
-
-        $model->deleteFriend($data);
-
-        $tmp = session()->get('friends');
-        unset($tmp[array_search($arg, $tmp)]);
-        $tmp = array_values($tmp);
-        session()->remove('friends');
-        session()->set(['friends' => $tmp]);
-
-        return redirect()->to('/user/'.$arg);
-    }
+    //
 
     public function create()
     {
@@ -150,7 +72,7 @@ class UserController extends BaseController
 
         $db = db_connect();
         $model = new CompilationModel($db);
-        $model->create($data);
+        $model->postOne($data);
 
         $data = (object) $data;
         $data->id = $db->insertID();
@@ -165,10 +87,8 @@ class UserController extends BaseController
             'title_id' => $this->request->getVar('title'),
             'list_id'  => $this->request->getVar('list')
         ];
-
-        $db = db_connect();
-        $model = new TitlesCompsModel($db);
-        $model->create($data);
+        
+        $this->tcModel->postOne($data);
 
         return redirect()->to('/user/'.session()->get('id').'?list='.$data['list_id']);
     }

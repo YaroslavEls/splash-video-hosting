@@ -2,7 +2,7 @@
 
 use CodeIgniter\Database\ConnectionInterface;
 
-class FriendsModel
+class FriendModel
 {
     protected $builder;
 
@@ -12,31 +12,33 @@ class FriendsModel
         $this->builder = $dataBase->table('Friends');
     }
 
-    function getUsersFriends($id)
+    // getting data
+
+    function getFriendsByUser($id)
     {
         return $this->builder
-                    ->select('Profiles.id, Profiles.username, Profiles.image, Friends.pending')
-                    ->join('Profiles', 'Profiles.id = Friends.profile2_id')
-                    ->where(['profile1_id' => $id, 'pending' => false])
-                    ->get()                     
-                    ->getResult();
+            ->select('Profiles.id, Profiles.username, Profiles.image, Friends.pending')
+            ->join('Profiles', 'Profiles.id = Friends.profile2_id')
+            ->where(['profile1_id' => $id, 'pending' => false])
+            ->get()                     
+            ->getResult();
     }
 
-    function getUsersInvites($id)
+    function getInvitesByUser($id)
     {
         $outgoing = $this->builder
-                        ->select('Profiles.id, Profiles.username, Profiles.image')
-                        ->join('Profiles', 'Profiles.id = Friends.profile2_id')
-                        ->where(['profile1_id' => $id, 'pending' => true])
-                        ->get()                     
-                        ->getResult();
+            ->select('Profiles.id, Profiles.username, Profiles.image')
+            ->join('Profiles', 'Profiles.id = Friends.profile2_id')
+            ->where(['profile1_id' => $id, 'pending' => true])
+            ->get()                     
+            ->getResult();
 
         $incoming = $this->builder
-                        ->select('Profiles.id, Profiles.username, Profiles.image')
-                        ->join('Profiles', 'Profiles.id = Friends.profile1_id')
-                        ->where(['profile2_id' => $id, 'pending' => true])
-                        ->get()                     
-                        ->getResult();
+            ->select('Profiles.id, Profiles.username, Profiles.image')
+            ->join('Profiles', 'Profiles.id = Friends.profile1_id')
+            ->where(['profile2_id' => $id, 'pending' => true])
+            ->get()                     
+            ->getResult();
 
         for ($i = 0; $i < count($outgoing); $i++) {
             $outgoing[$i]->direction = 'outgoing';
@@ -51,26 +53,28 @@ class FriendsModel
         return $invites;
     }
 
-    function addPendingInvite($data)
+    // posting data
+
+    function postInvite($data)
     {
         $value = $this->builder
-                        ->where($data)
-                        ->get()
-                        ->getResult();
+            ->where($data)
+            ->get()
+            ->getResult();
 
         if ($value) {
             return;
         }
-
+        
         $newData = [
             'profile1_id' => $data['profile2_id'],
             'profile2_id' => $data['profile1_id'],
         ];
 
         $value = $this->builder
-                        ->where($newData)
-                        ->get()
-                        ->getResult();
+            ->where($newData)
+            ->get()
+            ->getResult();
 
         if ($value) {
             $newData['pending'] = false;

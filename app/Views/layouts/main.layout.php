@@ -33,5 +33,15 @@
             url('<?= base_url('assets/fonts/anime_ace_v05.ttf'); ?>') format('truetype'), /* Safari, Android, iOS */
             url('<?= base_url('assets/fonts/anime_ace_v05.svg#anime_ace_v05'); ?>') format('svg'); /* Chrome < 4, Legacy iOS */
     }
+
+    @font-face {
+        font-family: 'Anime Ace v3';
+        src: url('<?= base_url('assets/fonts/anime_ace_v3.eot'); ?>'); /* IE 9 Compatibility Mode */
+        src: url('<?= base_url('assets/fonts/anime_ace_v3.eot?#iefix'); ?>') format('embedded-opentype'), /* IE < 9 */
+            url('<?= base_url('assets/fonts/anime_ace_v3.woff2'); ?>') format('woff2'), /* Super Modern Browsers */
+            url('<?= base_url('assets/fonts/anime_ace_v3.woff'); ?>') format('woff'), /* Firefox >= 3.6, any other modern browser */
+            url('<?= base_url('assets/fonts/anime_ace_v3.ttf'); ?>') format('truetype'), /* Safari, Android, iOS */
+            url('<?= base_url('assets/fonts/anime_ace_v3.svg#anime_ace_v3'); ?>') format('svg'); /* Chrome < 4, Legacy iOS */
+    }
 </style>
 </html>

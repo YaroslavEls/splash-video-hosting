@@ -12,28 +12,30 @@ class MainController extends BaseController
         'pages' => 0
     ];
 
+    public $titleModel;
+
     public function __construct()
     {
         $db = db_connect();
-        $model = new TitleModel($db);
-        $count = $model->countAll();
-        
+        $this->titleModel = new TitleModel($db);
+
+        $count = $this->titleModel->countAll();
         $this->current['pages'] = ceil($count/$this->current['perPage']);
     }
 
     public function index()
     {
-        $db = db_connect();
-        $model = new TitleModel($db);
-
-        $page = $this->request->getVar('page');
-        $page = $page == 0 ? 1 : $page;
+        $page = $this->request->getVar('page') == 0 ? 1 : $this->request->getVar('page');
         if ($page > $this->current['pages'] || $page < 0) {
             throw new PageNotFoundException();
         }
 
-        $novelties = $model->getByTag(1); // 1 = id of tag 'new'
-        $popular = $model->getAllPerPage($this->current['perPage'], $page);
-        return view('pages/main.php', ['novelties' => $novelties, 'popular' => $popular, 'page' => $page, 'pages' => $this->current['pages']]);
+        $data = [
+            'novelties' => $this->titleModel->getByTag(1), // 1 = id of tag 'new'
+            'popular'   => $this->titleModel->getAll($this->current['perPage'], $page),
+            'page'      => $page,
+            'pages'     => $this->current['pages']
+        ];
+        return view('pages/main.php', $data);
     }
 }

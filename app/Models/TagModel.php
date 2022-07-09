@@ -12,44 +12,35 @@ class TagModel
         $this->builder = $dataBase->table('Tags');
     }
 
+    // getting data
+
     function getAll()
     {
-        return $this->builder
-                    ->get()                     
-                    ->getResult();
+        $result = $this->builder
+            ->get()                     
+            ->getResult();
+
+        $data = [
+            'tags' => [],
+            'genres' => []
+        ];
+
+        for ($i = 0; $i < count($result); $i++) {
+            if ($result[$i]->genre == 'f') {
+                array_push($data['tags'], $result[$i]);
+            } else {
+                array_push($data['genres'], $result[$i]);
+            }
+        }
+
+        return $data;
     }
 
-    function getAllTags() 
+    function getByName($name)
     {
         return $this->builder
-                    ->where(['genre =' => false])
-                    ->get()                     
-                    ->getResult();
-    }
-
-    function getTagByName($name)
-    {
-        return $this->builder
-                    ->where(['genre =' => false])
-                    ->where(['name =' => $name])
-                    ->get()                     
-                    ->getRow();
-    }
-
-    function getAllGenres()
-    {
-        return $this->builder
-                    ->where(['genre =' => true])
-                    ->get()                     
-                    ->getResult();
-    }
-
-    function getGenreByName($name)
-    {
-        return $this->builder
-                    ->where(['genre =' => true])
-                    ->where(['name =' => $name])
-                    ->get()                     
-                    ->getRow();
+            ->where(['name =' => $name])
+            ->get()                     
+            ->getRow();
     }
 }
