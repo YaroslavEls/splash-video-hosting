@@ -66,6 +66,59 @@ class TitleModel
             ->countAllResults();
     }
 
+    function getBySomeTags($ids, $perPage = 0, $page = 0) 
+    {
+        $pairs = $this->builder
+            ->select('TitlesTags.*')
+            ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+            ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+            ->orWhereIn('TitlesTags.tag_id', $ids)
+            ->get()                     
+            ->getResult();
+
+        $count = array_count_values(array_column($pairs, 'title_id'));
+        $title_ids = [];
+
+        foreach ($count as $key => $value) {
+            if ($value == count($ids)) {
+                array_push($title_ids, $key);
+            }
+        }
+        unset($value);
+
+        $titles = $this->builder
+            ->select('Titles.*')
+            ->orWhereIn('Titles.id', $title_ids)
+            ->limit($perPage, ($page-1)*$perPage)
+            ->get()                     
+            ->getResult();
+
+        return $titles;
+    }
+
+    function countBySomeTags($ids)
+    {
+        $pairs = $this->builder
+            ->select('TitlesTags.*')
+            ->join('TitlesTags', 'Titles.id = TitlesTags.title_id')
+            ->join('Tags', 'TitlesTags.tag_id = Tags.id')
+            ->orWhereIn('TitlesTags.tag_id', $ids)
+            ->get()                     
+            ->getResult();
+
+        $count = array_count_values(array_column($pairs, 'title_id'));
+        $title_ids = [];
+
+        foreach ($count as $key => $value) {
+            if ($value == count($ids)) {
+                array_push($title_ids, $key);
+            }
+        }
+        unset($value);
+
+        return count($title_ids);
+    }
+
     function getByName($name)
     {
         $title = $this->builder

@@ -17,7 +17,9 @@
         <div class="content">
             <?= view('partials/menu-main') ?>
             <?= $this->renderSection('content'); ?>
-            <?= view('partials/pagination') ?>
+            <?php if (isset($page)) : ?>
+                <?= view('partials/pagination') ?>
+            <?php endif; ?>
         </div>
         <?= $this->include('partials/footer-main'); ?>
     </div>

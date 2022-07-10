@@ -17,6 +17,7 @@ class TagModel
     function getAll()
     {
         $result = $this->builder
+            ->orderBy('name', 'ASC')
             ->get()                     
             ->getResult();
 
@@ -36,11 +37,11 @@ class TagModel
         return $data;
     }
 
-    function getByName($name)
+    function getByName($names)
     {
         return $this->builder
-            ->where(['name =' => $name])
+            ->orWhereIn('name', $names)
             ->get()                     
-            ->getRow();
+            ->getResult();
     }
 }

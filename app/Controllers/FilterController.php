@@ -35,17 +35,19 @@ class FilterController extends BaseController
 
     public function tag($arg)
     {
-        $tag = $this->tagModel->getByName($arg);
-        if (!$tag) {
+        $filters = explode(" ", $arg);
+        $tags = $this->tagModel->getByName($filters);
+        if (count($filters) != count($tags)) {
             throw new PageNotFoundException();
         }
+        $ids = array_column($tags, 'id');
 
         $page = $this->request->getVar('page') == 0 ? 1 : $this->request->getVar('page');
-        $count = $this->titleModel->countByTag($tag->id);
+        $count = $this->titleModel->countBySomeTags($ids);
         $this->current = paginationSetup($this->current, $arg, $page, $count);
 
         $data = [
-            'data'      => $this->titleModel->getByTag($tag->id, $this->current['perPage'], $page),
+            'data'      => $count == 0 ? [] : $this->titleModel->getBySomeTags($ids, $this->current['perPage'], $page),
             'heading'   => $arg,
             'page'      => $page,
             'pages'     => $this->current['pages']

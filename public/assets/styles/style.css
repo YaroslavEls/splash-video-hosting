@@ -1080,6 +1080,82 @@ body.user .empty {
 }
 
 
+/* FILTERS PAGE */
+
+form.filter {
+    padding: 0 40px 0 345px;
+}
+
+form.filter input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+form.filter .heading.large {
+    margin-bottom: 20px;
+}
+
+form.filter .heading.xsmall {
+    margin : 10px 0 20px 10px;
+}
+
+form.filter .tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    text-decoration: none;
+    background: #F7F2F4;
+    border: 1px solid #352632;
+    border-radius: 27.5px;
+    padding: 10px 58px 10px 18px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    color: #352632;
+    margin: 0 10px 25px 0;
+    height: 52px;
+}
+
+form.filter .tag.on .checked {
+    position: absolute;
+    right: 18px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+form.filter .tag .circle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 18px;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+form.filter .conf {
+    display: block;
+    width: fit-content;
+    background: #8BFF89;
+    border: 3px solid #352632;
+    border-radius: 25px;
+    padding: 11px 69px;
+    font-family: 'Anime Ace v3';
+    font-weight: 300;
+    font-size: 26px;
+    line-height: 29px;
+    letter-spacing: 0.1em;
+    color: #352632;
+    margin: 50px 0;
+    cursor: pointer;
+}
+
 
 
 .disabled {
