@@ -12,7 +12,7 @@
     <link href="<?= base_url('assets/styles/style.css'); ?>" rel="stylesheet">
 </head>
 <body class="watch">
-    <div class="wrapper">
+    <div class="bg_wrap" style="background-image: url('<?= base_url('assets/svg/bg_profile.svg'); ?>');">
         <?= $this->include('partials/header-watch'); ?>
         <?= $this->renderSection('content'); ?>
         <?= $this->include('partials/footer-watch'); ?>

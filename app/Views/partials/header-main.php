@@ -9,7 +9,7 @@
     <div class="lang" style="background-image: url('<?= base_url('assets/svg/lang_icon.svg'); ?>');"></div>
     <div class="wrapper">
         <a href="/" class="logo">SH</a>
-        <div>
+        <div class="wrapper_x2">
             <h1 class="heading"><a href="/"><span>Splash</span>-Hentai</a></h1>
             <form action="<?= explode('/', current_url())[4] == 'compilations' ? '/compilations/search' : '/search' ?>" id="search">
                 <input name="search" type="search" placeholder="Поиск">

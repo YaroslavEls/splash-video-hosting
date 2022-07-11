@@ -6,42 +6,11 @@
 <div class="information">
     <div class="fcol">
         <img src="<?= base_url('images/'.$data->image) ?>" alt="<?= $data->name ?>">
-        <div class="add">Добавить в</div>
-        <?php if (session()->get('isLoggedIn')) : ?>
-            <div class="add-menu disabled">
-                <form action="<?= base_url() ?>/add" method="post" id="add">
-                    <input type="number" name="title" class="disabled" value="<?= $data->id ?>">
-                    <input type="number" name="list" class="disabled">
-                    <?php for ($i = 0; $i < count(session()->get('compsDefault')); $i++) : ?>
-                        <div comp_id="<?= session()->get('compsDefault')[$i]->id ?>"><?= session()->get('compsDefault')[$i]->name ?></div>
-                    <?php endfor; ?>
-                    <?php for ($i = 0; $i < count(session()->get('comps')); $i++) : ?>
-                        <div comp_id="<?= session()->get('comps')[$i]->id ?>"><?= session()->get('comps')[$i]->name ?></div>
-                    <?php endfor; ?>
-                </form>
-            </div>
-        <?php endif; ?>
+        <div class="add">Добавить в <div class="exp" style="background-image:url('<?= base_url('assets/svg/expand_icon.svg') ?>')"></div></div>
+        <?= view('partials/add-menu'); ?>
     </div>
     <div class="scol">
-        <div class="stars"></div>
-        <div class="name"><?= $data->name ?></div>
-        <div class="desc">Описание:</div>
-        <div class="line">
-            <span>Жанры:</span>
-            <div>
-                <?php for($i = 0; $i < count($data->genres); $i++) : ?>
-                    <a href="/filters/<?= $data->genres[$i] ?>"><?= $data->genres[$i].(isset($data->genres[$i+1]) ? ',' : '') ?></a>
-                <?php endfor; ?>
-            </div>
-        </div>
-        <div class="line"><span>Эпизоды:</span><?= $data->episodes ?></div>
-        <div class="line"><span>Длительность:</span>???</div>
-        <div class="line"><span>Год:</span>???</div>
-        <div class="line"><span>Перевод:</span>???</div>
-        <div class="line"><span>Цензура:</span>???</div>
-        <div class="line"><span>Страна:</span>???</div>
-        <div class="line"><span>Первоисточник:</span>???</div>
-        <div class="line"><span>Студия:</span>???</div>
+        <?= view('partials/watch-desc'); ?>
     </div>
 </div>
 

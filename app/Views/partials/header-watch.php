@@ -6,5 +6,8 @@
         <a href="/registration" class="registration">Регистрация</a>
         <a href="/login" class="login">Войти</a>
     <?php endif; ?>
-    <h1 class="heading"><a href="/"><span>Splash</span>-Hentai</a></h1>
+    <div class="wrapper">
+        <a href="/" class="logo">SH</a>
+        <h1 class="heading"><a href="/"><span>Splash</span>-Hentai</a></h1>
+    </div>
 </div>
